@@ -8,7 +8,7 @@ Directrices:
 	- que esa BD tenga un usuario con tu nombre y dar permisos completos sobre la BBDD
 	- poner el engine innodb
 	- Crear un script para una bd tipo iMBD creando las sig tablas: 
-		nombre de la BD:
+		nombre de la BD: coleccion_pelis
 		categoria (id, nombre), 
 		peliculas (id, titulo, estreno, duracion, id_director, id_categoria), 
 		usuario (id, email, nombre, apellidos, fecha_nac), 
