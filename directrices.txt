@@ -1,0 +1,22 @@
+Directrices:
+
+	- todo lo que vimos (spring, thymelead, etc) outra opcion es hacerlo con javascript pero no usar thymeleaf
+	- hacer CRUD para pelicula
+	- empezar mejor por dao de usuario y de peliculas 
+
+	- nombre BD: coleccion_pelis
+	- que esa BD tenga un usuario con tu nombre y dar permisos completos sobre la BBDD
+	- poner el engine innodb
+	- Crear un script para una bd tipo iMBD creando las sig tablas: 
+		nombre de la BD:
+		categoria (id, nombre), 
+		peliculas (id, titulo, estreno, duracion, id_director, id_categoria), 
+		usuario (id, email, nombre, apellidos, fecha_nac), 
+		puntuacion (id, id_usuario, nota, id_pelicula)
+		actores (id, nombre, fecha_nac, nacionalidad, )
+		director (id, nombre, apellidos, nacionalidad, fecha_nac, id_pelicula)
+		
+		1:N (cat - peli)
+		1:1 (peli - dir)
+		n:m (punt - peli)
+		1:n (peli - act)
