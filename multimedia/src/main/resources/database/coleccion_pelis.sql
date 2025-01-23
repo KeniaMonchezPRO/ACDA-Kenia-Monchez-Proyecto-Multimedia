@@ -1,6 +1,6 @@
 -- Creacion del usuario
 CREATE USER IF NOT EXISTS 'kenia'@'localhost' IDENTIFIED BY 'abc123.';
-GRANT ALL ON huellas.* TO 'kenia'@'localhost';
+GRANT ALL ON coleccion_pelis.* TO 'kenia'@'localhost';
 
 -- Creacion y seleccion de la base de datos
 CREATE DATABASE IF NOT EXISTS coleccion_pelis CHARACTER SET utf8;

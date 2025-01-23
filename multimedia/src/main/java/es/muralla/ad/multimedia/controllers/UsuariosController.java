@@ -1,19 +1,18 @@
 package es.muralla.ad.multimedia.controllers;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import es.muralla.ad.multimedia.dao.UsuariosDao;
 import es.muralla.ad.multimedia.entidades.Usuario;
 
-@RestController
+@Controller
 @RequestMapping("/usuarios")
 public class UsuariosController {
 	
@@ -22,6 +21,18 @@ public class UsuariosController {
 	public UsuariosController(UsuariosDao usuariosDao) {
 		this.usuariosDao = usuariosDao;
 	}
+	
+	@GetMapping("/sample")
+	public String verSample() {
+		return "sample";
+	}
+	
+	@GetMapping("/registro")
+	public String verPaginaRegistro() {
+		return "form-registro";
+	}
+	
+	/************************************************************************/
 	
 	@GetMapping("/all")
 	public List<Usuario> getAll() {
@@ -62,8 +73,6 @@ public class UsuariosController {
 		
 		return usuariosDao.update(u); 
 	}
-	
-	
 	
 	
 
