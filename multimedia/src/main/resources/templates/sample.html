@@ -1,11 +1,23 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<title>Sample</title>
-</head>
-<body>
-	<h1>Registrarse</h1>
-
-</body>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="../static/estilo.css">
+    <title>Sample</title>
+  </head>
+  <body>
+    <div class="cards_container two">
+      <form action="procesar.php" method="post">
+		<h1>Registrarse</h1>
+		<p>
+			<label for="nombreUsuario">Nombre:</label>
+			<input id="nombreUsuario" type="text" name="nombre" value="" placeholder="Escribe tu nombre"/>
+		</p>
+		<p class="footForm" style="text-align: center;">Ya tienes cuenta?</p>
+		<p class="footForm" style="text-align: center;"><a href="#">Iniciar Sesión</a></p>
+	  </form>
+		
+    </div>
+  </body>
 </html>

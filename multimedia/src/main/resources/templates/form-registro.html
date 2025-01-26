@@ -1,43 +1,177 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-	crossorigin="anonymous">
-<title>Registrarse | Coleccion Pelis</title>
-</head>
-<body>
-	<div class="container">
-		<h1>Registrarse</h1>
-		<div class="row">
-			<div class="col">
-				<h4>Nombre:</h4>
-				<input type="text" class="form-control" placeholder="Nombre"
-					aria-label="First name">
-			</div>
-			<div class="col">
-				<h4>Apellidos:</h4>
-				<input type="text" class="form-control" placeholder="Apellidos"
-					aria-label="Last name">
-			</div>
-		</div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <title>Registrarse | Coleccion Pelis</title>
+  </head>
+
+  <style>
+	
+    .container-sm {
+      border-radius: 20px;
+      box-shadow: 7px 7px 20px #2d383a8a, 0.2px -2px 20px #ffffff6a;
+    }
+
+    h1 {
+      text-align: left;
+    }
+
+	label {
+		font-size: 12px;
+	}
+
+	.btn {
+		background-color: #8C1127;
+		border: 0px;
+	}
+
+	.btn:hover {
+		color: #8C1127;
+    	background-color: white;
+    	border: 2px solid #8C1127;
+	}
+
+	.bg-black {
+		height: 100vh;
+	}
+
+  </style>
+
+  <nav class="navbar bg-body-tertiary">
+    <div class="container-fluid">
+      <a href="#">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="25"
+          height="25"
+          fill="#591E11"
+          class="bi bi-arrow-left"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"
+          />
+		  <use xlink:href="#arrow-left"></use>
+        </svg>
+      </a>
+      <a class="navbar-brand display-7 ms-4" href="#"> Colección Pelis </a>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        fill="#591E11"
+        class="bi bi-film me-4"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M0 1a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1zm4 0v6h8V1zm8 8H4v6h8zM1 1v2h2V1zm2 3H1v2h2zM1 7v2h2V7zm2 3H1v2h2zm-2 3v2h2v-2zM15 1h-2v2h2zm-2 3v2h2V4zm2 3h-2v2h2zm-2 3v2h2v-2zm2 3h-2v2h2z"
+        />
+      </svg>
+    </div>
+  </nav>
+
+  <body class="bg-secondary-subtle text-secondary-emphasis">
+	
+	<div class="bg-black d-flex align-items-center">
 		
-		<div class="row">
-			<div class="col">
-				<h4>Nombre de usuario:</h4>
-				<input type="text" class="form-control" placeholder="Nombre de usuario"
-					aria-label="First name">
-			</div>
-			<div class="col">
-				<h4>Email:</h4>
-				<input type="text" class="form-control" placeholder="Email"
-					aria-label="Last name">
-			</div>
+		<div class="container-sm bg-success text-light-emphasis" >
+			
+			<div>
+				<h1 class="display-6 pt-5 ps-4">Registrarse</h1>
+				<form class="bg-danger">
+					
+				  <!--Campos del formulario-->
+				  <div class="row mt-5 mx-3">
+					<div class="col">
+					  <div class="form-floating mb-3 ">
+						<input
+						  type="text"
+						  class="form-control"
+						  id="floatingNombreInput"
+						  placeholder="John"
+						/>
+						<label for="floatingNombreInput">Nombre</label>
+					  </div>
+					</div>
+					<div class="col">
+					  <div class="form-floating">
+						<input
+						  type="text"
+						  class="form-control"
+						  id="floatingApellidosInput"
+						  placeholder="Doe"
+						/>
+						<label for="floatingApellidosInput">Apellidos</label>
+					  </div>
+					</div>
+				  </div>
+		  
+				  <div class="row mx-3">
+					<div class="col-12">
+					  <div class="form-floating mb-3">
+						<input
+						  type="email"
+						  class="form-control"
+						  id="floatingEmailInput"
+						  placeholder="nombre@example.com"
+						/>
+						<label class="" for="floatingEmailInput">Email</label>
+					  </div>
+					</div>
+				  </div>
+		  
+				  <div class="row mx-3">
+					<div class="col">
+					  <div class="form-floating mb-3 d-flex flex-wrap">
+						<input
+						  type="text"
+						  class="form-control"
+						  id="floatingNombreUsuarioInput"
+						  placeholder="John"
+						/>
+						<label for="floatingNombreInput">Usuario</label>
+					  </div>
+					</div>
+					<div class="col">
+					  <div class="form-floating">
+						<input
+						  type="password"
+						  class="form-control"
+						  id="floatingPasswordInput"
+						  placeholder="password"
+						/>
+						<label for="floatingPasswordInput">Contraseña</label>
+					  </div>
+					</div>
+				  </div>
+		  
+				  <!-- Footer -->
+				</form>
+				<footer>
+				  <div class="pt-3 pb-5 container text-center">
+					<div class="row justify-content-between align-items-center">
+					  <div class="col-4">
+						<p>¿Ya tienes cuenta?</p>
+						<a href="#">Iniciar Sesión</a>
+					  </div>
+					  <div class="col-4">
+						<button id="test" class="btn btn-primary py-2 px-3" type="button">
+						  Registrarse
+						</button>
+					  </div>
+					</div>
+				  </div>
+				</footer>
+			  </div>
 		</div>
 	</div>
-</body>
+  </body>
 </html>
