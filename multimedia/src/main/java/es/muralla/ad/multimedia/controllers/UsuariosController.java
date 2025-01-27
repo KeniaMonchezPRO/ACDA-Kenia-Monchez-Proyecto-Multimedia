@@ -5,8 +5,11 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import es.muralla.ad.multimedia.dao.UsuariosDao;
@@ -22,17 +25,34 @@ public class UsuariosController {
 		this.usuariosDao = usuariosDao;
 	}
 	
-	@GetMapping("/sample")
-	public String verSample() {
-		return "sample";
-	}
+	/**************************Para @Controller**********************************************/
 	
-	@GetMapping("/registro")
-	public String verPaginaRegistro() {
+	@GetMapping("/crear")
+	public String verFormRegistro(Model model) {
+		Usuario u = new Usuario();
+		model.addAttribute("usuario", u);
 		return "form-registro";
 	}
 	
-	/************************************************************************/
+	@PostMapping("/crear")
+	public String registrarUsuario(@ModelAttribute("usuario") Usuario u) {
+		usuariosDao.add(u);
+		return "redirect:/usuarios/iniciar";
+	}
+	
+	/* forma de spring: 
+	@PostMapping("/crear")
+	public String registrarUsuario(@ModelAttribute Usuario usuario, Model model) {
+		model.addAttribute("greeting", usuario);
+		return "form-iniciar-sesion";
+	}*/
+	
+	@GetMapping("/iniciar")
+	public String verFormIniciarSesion() {
+		return "form-iniciar-sesion";
+	}
+	
+	/**************************Para @RestController**********************************************/
 	
 	@GetMapping("/all")
 	public List<Usuario> getAll() {
