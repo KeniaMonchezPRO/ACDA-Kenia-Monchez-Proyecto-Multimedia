@@ -43,10 +43,10 @@ CREATE TABLE pelicula (
     estreno date NOT NULL,
     duracion int NOT NULL,
     
-    id_categoria int NOT NULL,
+    #id_categoria int NOT NULL,
     
-    primary key (id),
-    foreign key (id_categoria) REFERENCES categoria(id)
+    primary key (id)
+    #foreign key (id_categoria) REFERENCES categoria(id)
 );
 
 CREATE TABLE puntuacion (

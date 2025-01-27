@@ -3,6 +3,8 @@ package es.muralla.ad.multimedia.dao;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.stereotype.Repository;
+
 import es.muralla.ad.multimedia.entidades.Usuario;
 
 public interface UsuariosDao {
@@ -16,5 +18,7 @@ public interface UsuariosDao {
 	public Usuario deleteById(int id);
 	
 	public Usuario update(Usuario u);
+	
+	public Optional<Usuario> getUserByUsername(Usuario u);
 
 }

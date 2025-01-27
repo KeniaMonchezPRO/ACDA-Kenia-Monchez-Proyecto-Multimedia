@@ -34,6 +34,12 @@ public class UsuariosController {
 		return "form-registro";
 	}
 	
+//	Forma 2
+//	@GetMapping("/crear")
+//	public String verFormRegistro(@ModelAttribute Pelicula p) {
+//		return "form-registro";
+//	}
+	
 	@PostMapping("/crear")
 	public String registrarUsuario(@ModelAttribute("usuario") Usuario u) {
 		usuariosDao.add(u);
@@ -48,9 +54,27 @@ public class UsuariosController {
 	}*/
 	
 	@GetMapping("/iniciar")
-	public String verFormIniciarSesion() {
+	public String verFormIniciarSesion(Model model) {
+		Usuario u = new Usuario();
+		model.addAttribute("usuario", u);
 		return "form-iniciar-sesion";
 	}
+	
+	@PostMapping("/iniciar")
+	public String iniciarPerfilUsuario(@ModelAttribute("usuario") Usuario u) {
+		//usuario encontrado = usuarioservice.buscarporemail(u.getemail())
+		//if(u.getcontrasena.equals(encontrado.getcontrasena(()){ bien coincide la contra } else { //return "redirect:/usuarios/iniciar?error=!" en thymeleaf: <p th:text=${param.error}></p> }
+		Optional<Usuario> encontrado = usuariosDao.getUserByUsername(u);
+		if(u.getUsuario().equals(encontrado.get().getUsuario())) {
+			return "SUCCESS";
+		} else {
+			return "redirect:/usuarios/iniciar";
+		}
+		
+		
+	}
+	
+	
 	
 	/**************************Para @RestController**********************************************/
 	

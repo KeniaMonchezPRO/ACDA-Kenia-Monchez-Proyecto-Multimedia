@@ -2,8 +2,18 @@ package es.muralla.ad.multimedia.entidades;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "pelicula")
 public class Pelicula {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String titulo;
 	private LocalDate estreno;
@@ -50,6 +60,15 @@ public class Pelicula {
 
 	public void setDuracion(int duracion) {
 		this.duracion = duracion;
+	}
+	
+	@Override
+	public String toString() {
+		String builder = String.format("=== Pelicula: %d ==="
+				+ "\nTítulo: %d"
+				+ "\nEstreno: %s"
+				+ "\nDuración: %d", id, titulo, estreno, duracion);
+		return builder;
 	}
 
 }

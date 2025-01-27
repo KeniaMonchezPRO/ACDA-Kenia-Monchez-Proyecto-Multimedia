@@ -56,9 +56,11 @@ public class UsuariosMySqlDaoImpl implements UsuariosDao {
 		entityManager.merge(u);
 		return u;
 	}
-	
-	
-	
-	
+
+	@Override
+	public Optional<Usuario> getUserByUsername(Usuario u) {
+		Usuario user = entityManager.find(Usuario.class, u.getUsuario());
+		return Optional.ofNullable(user);
+	}
 
 }

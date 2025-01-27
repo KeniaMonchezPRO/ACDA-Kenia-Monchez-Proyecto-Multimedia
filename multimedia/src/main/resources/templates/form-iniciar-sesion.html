@@ -13,7 +13,7 @@
   </head>
   <style>
     .container-sm {
-      width: 25%;
+      width: 50%;
       border-radius: 20px;
       border: 1px solid #7e0f23;
       box-shadow: 22px 22px 44px #9d9d9d, -22px -22px 44px #ffffff6a;
@@ -94,7 +94,7 @@
           >
             Iniciar Sesión
           </h1>
-          <form
+          <form action="#" method="post" th:action="@{/usuarios/iniciar}" th:object="${usuario}"
           >
             <!--Campos del formulario-->
             <div class="container">
@@ -105,11 +105,12 @@
                   <div class="form-floating mb-3 d-flex flex-wrap">
                     <input
                       type="text"
+                      th:field="*{usuario}"
                       class="form-control"
                       id="floatingNombreUsuarioInput"
                       placeholder="John"
                     />
-                    <label for="floatingNombreInput">Usuario</label>
+                    <label for="floatingNombreUsuarioInput">Usuario</label>
                   </div>
                 </div>
               </div>
@@ -119,6 +120,7 @@
                   <div class="form-floating">
                     <input
                       type="password"
+                      th:field="*{contrasena}"
                       class="form-control"
                       id="floatingPasswordInput"
                       placeholder="password"
