@@ -8,15 +8,27 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table( name = "usuario")
+//@Getter
+//@Setter
+//@NoArgsConstructor
+//@AllArgsConstructor
+//@ToString
 public class Usuario {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private String usuario;
+	
+	@Column(name = "usuario")
+	private String username;
 	private String contrasena;
 	private String email;
 	private String nombre;
@@ -29,8 +41,8 @@ public class Usuario {
 		
 	}
 	
-	public Usuario(String usuario, String contrasena, String email, String nombre, String apellidos, LocalDate fechaNac) {
-		this.usuario = usuario;
+	public Usuario(String username, String contrasena, String email, String nombre, String apellidos, LocalDate fechaNac) {
+		this.username = username;
 		this.contrasena = contrasena;
 		this.email = email;
 		this.nombre = nombre;
@@ -38,14 +50,22 @@ public class Usuario {
 		this.fechaNac = fechaNac;
 	}
 
-	public Usuario(int id, String usuario, String contrasena, String email, String nombre, String apellidos, LocalDate fechaNac) {
+	public Usuario(int id, String username, String contrasena, String email, String nombre, String apellidos, LocalDate fechaNac) {
 		this.id = id;
-		this.usuario = usuario;
+		this.username = username;
 		this.contrasena = contrasena;
 		this.email = email;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.fechaNac = fechaNac;
+	}
+	
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public int getId() {
@@ -54,14 +74,6 @@ public class Usuario {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public String getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
 	}
 
 	public String getContrasena() {
@@ -73,7 +85,7 @@ public class Usuario {
 	}
 
 	public String getEmail() {
-		return email;
+	return email;
 	}
 
 	public void setEmail(String email) {
@@ -111,9 +123,11 @@ public class Usuario {
 				+ "\nEmail: %s"
 				+ "\nNombre: %s"
 				+ "\nApellidos: %s"
-				+ "\nFecha de Nacimiento: %s", usuario, id, email, nombre, apellidos, fechaNac);
+				+ "\nFecha de Nacimiento: %s", getUsername(), id, email, nombre, apellidos, fechaNac);
 		return builder;
 	}
+
+	
 	
 	
 

@@ -1,5 +1,7 @@
 package es.muralla.ad.multimedia.services;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import es.muralla.ad.multimedia.dao.PeliculasRepository;
@@ -17,6 +19,21 @@ public class PeliculasServiceImpl implements IPeliculasService {
 	@Override
 	public void crear(Pelicula p) {
 		peliculasRepository.save(p);
+	}
+
+	@Override
+	public void eliminar(int id) {
+		peliculasRepository.deleteById(id);
+	}
+
+	@Override
+	public void modificar(Pelicula p) {
+	
+	}
+
+	@Override
+	public List<Pelicula> getAll() {
+		return peliculasRepository.findAll();
 	}
 
 }

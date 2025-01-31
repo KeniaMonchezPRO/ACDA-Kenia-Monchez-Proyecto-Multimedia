@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import es.muralla.ad.multimedia.entidades.Usuario;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 
@@ -59,8 +60,12 @@ public class UsuariosMySqlDaoImpl implements UsuariosDao {
 
 	@Override
 	public Optional<Usuario> getUserByUsername(Usuario u) {
-		Usuario user = entityManager.find(Usuario.class, u.getUsuario());
-		return Optional.ofNullable(user);
+		// esto no funciona porque el find es solo find primary key Usuario user = entityManager.find(Usuario.class, u.getUsername());
+		TypedQuery<Usuario> query = entityManager.createQuery("from Usuario where username = :username", Usuario.class);
+		query.setParameter("username", u.getUsername());
+		Optional<Usuario> x = query.getResultList().stream().findFirst();
+		//Optional<Usuario> x = Optional.ofNullable(query.getSingleResult());
+		return x;
 	}
 
 }

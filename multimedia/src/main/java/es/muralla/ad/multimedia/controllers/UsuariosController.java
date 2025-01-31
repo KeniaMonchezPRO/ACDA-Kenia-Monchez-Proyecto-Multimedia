@@ -56,22 +56,24 @@ public class UsuariosController {
 	@GetMapping("/iniciar")
 	public String verFormIniciarSesion(Model model) {
 		Usuario u = new Usuario();
-		model.addAttribute("usuario", u);
+		model.addAttribute("username", u);
 		return "form-iniciar-sesion";
 	}
 	
 	@PostMapping("/iniciar")
-	public String iniciarPerfilUsuario(@ModelAttribute("usuario") Usuario u) {
+	public String iniciarPerfilUsuario(@ModelAttribute("username") Usuario u) {
+		//TODO: QUE VERIFICA TAMBIEN QUE LA CONTRASENA COINCIDA CON EL USUARIO
 		//usuario encontrado = usuarioservice.buscarporemail(u.getemail())
 		//if(u.getcontrasena.equals(encontrado.getcontrasena(()){ bien coincide la contra } else { //return "redirect:/usuarios/iniciar?error=!" en thymeleaf: <p th:text=${param.error}></p> }
 		Optional<Usuario> encontrado = usuariosDao.getUserByUsername(u);
-		if(u.getUsuario().equals(encontrado.get().getUsuario())) {
-			return "SUCCESS";
+		if(encontrado.isPresent()) {
+			if(u.getUsername().equals(encontrado.get().getUsername())) {
+				return "redirect:/peliculas/crear";
+			}
 		} else {
 			return "redirect:/usuarios/iniciar";
 		}
-		
-		
+		return "";
 	}
 	
 	
@@ -108,7 +110,7 @@ public class UsuariosController {
 		Usuario u = new Usuario();
 		
 		u.setId(3);
-		u.setUsuario("Bob el constructor");
+		u.setUsername("Bob el constructor");
 		u.setContrasena("yaga*10");
 		u.setEmail("babayaga@yahoo.com");
 		u.setNombre("Baba");

@@ -20,7 +20,7 @@ DROP TABLE IF EXISTS categoria;
 -- Creación de tablas:
 CREATE TABLE usuario (
 	id int NOT NULL auto_increment,
-    usuario varchar(255) NOT NULL,
+    usuario varchar(255) unique NOT NULL,
     contrasena varchar(255) NOT NULL,
     email varchar(255) NOT NULL,
     nombre varchar(255) NOT NULL,
@@ -67,5 +67,12 @@ INSERT INTO usuario
 VALUES 
 	("La pepita trambolica", "matrix10", "antonia@gmail.com", "Antonia", "Winesmith", '1968-12-17'),
     ("Humberto el valiente", "contrasena", "alexanderG@bellsouth.ue", "Alex", "White", '1999-03-08'),
-    ("Baba Yaga", "yaga*10", "babayaga@yahoo.com", "Baba", "Yaga", '2005-10-31')
+    ("Baba Yaga", "yaga*10", "babayaga@yahoo.com", "Baba", "Yaga", '2005-10-31');
+    
+INSERT INTO pelicula
+	(titulo, estreno, duracion)
+VALUES 
+	("Los juegos del hambre: En llamas", '2014-12-17', "145"),
+    ("Los juegos del hambre: Mockingjay Parte I", '2015-12-17', "145"),
+    ("Los juegos del hambre: Mockingjay Parte II", '2016-12-17', "145");
 

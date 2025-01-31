@@ -94,7 +94,7 @@
           >
             Iniciar Sesión
           </h1>
-          <form action="#" method="post" th:action="@{/usuarios/iniciar}" th:object="${usuario}"
+          <form action="#" method="post" th:action="@{/usuarios/iniciar}" th:object="${username}"
           >
             <!--Campos del formulario-->
             <div class="container">
@@ -105,7 +105,7 @@
                   <div class="form-floating mb-3 d-flex flex-wrap">
                     <input
                       type="text"
-                      th:field="*{usuario}"
+                      th:field="*{username}"
                       class="form-control"
                       id="floatingNombreUsuarioInput"
                       placeholder="John"

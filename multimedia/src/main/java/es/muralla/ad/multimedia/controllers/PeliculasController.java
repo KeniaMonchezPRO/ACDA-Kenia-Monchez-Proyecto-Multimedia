@@ -1,6 +1,7 @@
 package es.muralla.ad.multimedia.controllers;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,7 +33,8 @@ public class PeliculasController {
 	}
 	
 	@GetMapping("/getall")
-	public String verTodasLasPelis() {
+	public String verTodasLasPelis(Model model) {
+		model.addAttribute("peliculas", peliculasService.getAll());
 		return "all-peliculas";
 	}
 
