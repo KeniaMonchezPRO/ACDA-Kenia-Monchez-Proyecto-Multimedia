@@ -29,7 +29,7 @@ public class PeliculasController {
 	public String crear(Pelicula p) {
 		//aqui va en el body la pelicula 
 		peliculasService.crear(p);
-		return "redirect:/peliculas/crear"; //cada vez que recargas con f5 te hago un get a esto
+		return "redirect:/peliculas/getall"; //cada vez que recargas con f5 te hago un get a esto
 	}
 	
 	@GetMapping("/getall")
