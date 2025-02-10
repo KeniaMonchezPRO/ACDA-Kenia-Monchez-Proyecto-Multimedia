@@ -1,6 +1,7 @@
 package es.muralla.ad.multimedia.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -34,6 +35,11 @@ public class PeliculasServiceImpl implements IPeliculasService {
 	@Override
 	public List<Pelicula> getAll() {
 		return peliculasRepository.findAll();
+	}
+
+	@Override
+	public Optional<Pelicula> getById(int id) {
+		return peliculasRepository.findById(id);
 	}
 
 }

@@ -18,5 +18,7 @@ public interface IPeliculasService {
 	void modificar(Pelicula p);
 	
 	List<Pelicula> getAll();
+	
+	Optional<Pelicula> getById(int id);
 
 }

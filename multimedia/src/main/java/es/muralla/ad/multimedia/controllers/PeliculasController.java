@@ -4,7 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import es.muralla.ad.multimedia.entidades.Pelicula;
@@ -36,6 +38,18 @@ public class PeliculasController {
 	public String verTodasLasPelis(Model model) {
 		model.addAttribute("peliculas", peliculasService.getAll());
 		return "all-peliculas";
+	}
+	
+	@PostMapping("/eliminar/{id}")
+	public String eliminar(@PathVariable int id) {
+		peliculasService.eliminar(id);
+		return "redirect:/peliculas/getall";
+	}
+	
+	@PutMapping("/editar/{id}")
+	public String editar(Model model, @PathVariable int id) {
+		model.addAttribute(peliculasService.getById(id));
+		return "/peliculas/editar";
 	}
 
 }
