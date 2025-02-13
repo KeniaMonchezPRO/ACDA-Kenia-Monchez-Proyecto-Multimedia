@@ -25,8 +25,11 @@
     	border: 2px solid #7e0f23;
 	}
 </style>
-<div th:insert="fragments/navigation.html">navbar</div>
-<nav th:replace="~{/fragments/navigation.html :: nav}"></nav>
+<p>ANTES DEL NAVBAR</p>
+<div th:replace="~{fragments/navigation.html :: nav}"></div>
+<P>despues del navbar</P>
+<!--<div th:insert="fragments/navigation.html">navbar</div>
+<nav th:replace="~{/fragments/navigation.html :: nav}"></nav> -->
 <body>
 	<div class="container">
 	<h1>Listado de peliculas</h1>

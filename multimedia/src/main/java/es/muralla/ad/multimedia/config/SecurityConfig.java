@@ -31,12 +31,12 @@ public class SecurityConfig {
 	}
 	
 	//para bloquear paginas:
-	@Bean
+	/*@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http.authorizeHttpRequests(configurer ->
 			configurer.requestMatchers("/peliculas/**").hasRole("ADMIN").anyRequest().authenticated()); //cualquiera que sea la URL necesita el user ser autenticado sino, te bloquea todo
 		return http.build();
 		
-	}
+	}*/
 
 }
