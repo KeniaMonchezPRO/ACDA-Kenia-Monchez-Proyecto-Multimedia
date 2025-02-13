@@ -51,5 +51,15 @@ public class PeliculasController {
 		model.addAttribute(peliculasService.getById(id));
 		return "/peliculas/editar";
 	}
+	
+	
+	
+	
+	@GetMapping("/categorias")
+    String categorias() {
+        return "categorias";
+    }
+	
+	
 
 }

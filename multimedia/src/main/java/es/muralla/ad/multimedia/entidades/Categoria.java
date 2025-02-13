@@ -1,10 +1,16 @@
 package es.muralla.ad.multimedia.entidades;
 
+import java.util.Set;
+
+import jakarta.persistence.OneToMany;
+
 public class Categoria {
 	
 	private int id;
 	private String nombre;
 	
+	@OneToMany
+	private Set<Pelicula> peliculas;
 	
 	public Categoria() {
 	}

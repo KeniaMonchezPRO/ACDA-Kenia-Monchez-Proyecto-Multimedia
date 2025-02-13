@@ -1,77 +1,94 @@
 <!DOCTYPE HTML>
-<html xmlns:th="https://www.thymeleaf.org">
-<head>
-<title>Peliculas</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-	crossorigin="anonymous">
-</head>
-<style>
-	.container {
-		height: 100vh;
-	}
-	
-	.btn {
-		background-color: #7e0f23;
-		border: 0px;
-	}
+<html lang="es" xmlns:th="https://www.thymeleaf.org" th:replace="~{layout :: layout(~{::title/text()}, ~{::#content})}">
 
-	.btn:hover {
-		color: #8C1127;
-    	background-color: white;
-    	border: 2px solid #7e0f23;
-	}
-</style>
-<p>ANTES DEL NAVBAR</p>
-<div th:replace="~{fragments/navigation.html :: nav}"></div>
-<P>despues del navbar</P>
-<!--<div th:insert="fragments/navigation.html">navbar</div>
-<nav th:replace="~{/fragments/navigation.html :: nav}"></nav> -->
-<body>
-	<div class="container">
-	<h1>Listado de peliculas</h1>
+	<head>
+		<title>Listado de peliculas</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+			crossorigin="anonymous">
+	</head>
+	
+	<style>
+		.container {
+			height: 100vh;
+		}
 		
-			<table class="table mt-5" >
-				<thead>
-					<tr>
-						<th scope="col">Título</th>
-						<th scope="col">Estreno</th>
-						<th scope="col">Duración</th>
-						<th scope="col">Acción</th>
-					</tr>
-				</thead>
-				<tbody class="table-group-divider">
-					<tr th:each="pelicula : ${peliculas}">
-						<td th:text="${pelicula.titulo}"></td>
-						<td th:text="${pelicula.estreno}"></td>
-						<td th:text="${pelicula.duracion}"></td>
-						<td>
-							<form th:action="@{/peliculas/editar}" th:method="put" th:object="${pelicula}">
-								<button class="btn btn-primary" type="submit" value="">Editar</button>
-							</form>
-							<form th:action="@{/peliculas/eliminar/{id}(id=${pelicula.id})}" th:method="post">
-								<button class="btn btn-primary" type="submit" value="">Eliminar</button>
-							</form>							
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		
-		
-		<div class="row justify-content-end align-items-center">
-			<div class="col-1">
-				<p><b>Recuento:</b></p>
-				<p th:text="${peliculas.size()}"></p>
-			</div>
-			<div class="col-1">
-				<a href="/peliculas/crear"><button class="btn btn-primary" type="button" value="">Añadir</button></a>
+		.btn {
+			background-color: #7e0f23;
+			border: 0px;
+		}
+	
+		.btn:hover {
+			color: #8C1127;
+	    	background-color: white;
+	    	border: 2px solid #7e0f23;
+		}
+	</style>
+	<!--<div th:insert="~{fragments/navigation :: nav}"></div>
+	<div th:insert="fragments/navigation.html">navbar</div>
+	<nav th:replace="~{/fragments/navigation.html :: nav}"></nav> -->
+	<body>
+		<div id="content">
+			<div class="container">
+				<h1 class="mt-5 display-6" style="color: #8C1127;">Listado de peliculas</h1>
+				
+					<table class="table mt-5" >
+						<thead>
+							<tr>
+								<th scope="col" style="color: #8C1127;">Título</th>
+								<th scope="col" style="color: #8C1127;">Estreno</th>
+								<th scope="col" style="color: #8C1127;">Duración</th>
+								<th scope="col" style="color: #8C1127;">Acción</th>
+							</tr>
+						</thead>
+						<tbody class="table-group-divider" style="color: #8C1127;">
+							<tr th:each="pelicula : ${peliculas}">
+								<td th:text="${pelicula.titulo}"></td>
+								<td th:text="${pelicula.estreno}"></td>
+								<td th:text="${pelicula.duracion}"></td>
+								<td>
+									<div class="row">
+										<div class="col">
+											<form th:action="@{/peliculas/editar}" th:method="put" th:object="${pelicula}">
+												<button class="btn" type="submit" value="" style="background: #8C1127; color: white;">Editar</button>
+											</form>
+										</div>
+										<div class="col">
+											<form th:action="@{/peliculas/eliminar/{id}(id=${pelicula.id})}" th:method="post">
+												<button class="btn" type="submit" value="" style="background: #8C1127; color: white;">Eliminar</button>
+											</form>
+										</div>
+										<div class="col">
+											<form th:action="@{/peliculas/detalles/{id}(id=${pelicula.id})}" th:method="post">
+												<button class="btn" type="submit" value="" style="background: #8C1127; color: white;">Detalles</button>
+											</form>
+										</div>
+									</div>
+									<!-- <form class="m-1" th:action="@{/peliculas/editar}" th:method="put" th:object="${pelicula}">
+										<button class="btn" type="submit" value="" style="background: #8C1127; color: white;">Editar</button>
+									</form>
+									<form class="m-1" th:action="@{/peliculas/eliminar/{id}(id=${pelicula.id})}" th:method="post">
+										<button class="btn" type="submit" value="" style="background: #8C1127; color: white;">Eliminar</button>
+									</form> -->							
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				
+				
+				<div class="row justify-content-end align-items-center">
+					<div class="col-1">
+						<p style="color: #8C1127;"><b>Recuento:</b></p>
+						<p th:text="${peliculas.size()}"></p>
+					</div>
+					<div class="col-1">
+						<a href="/peliculas/crear"><button class="btn" type="button" value="" style="background: #8C1127; color: white;">Añadir</button></a>
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
-	
-	
-</body>
+	</body>
 </html>
