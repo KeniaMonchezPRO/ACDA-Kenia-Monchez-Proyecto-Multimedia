@@ -1,5 +1,7 @@
 package es.muralla.ad.multimedia.controllers;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,7 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import es.muralla.ad.multimedia.entidades.Categoria;
 import es.muralla.ad.multimedia.entidades.Pelicula;
+import es.muralla.ad.multimedia.services.ICategoriasService;
 import es.muralla.ad.multimedia.services.IPeliculasService;
 
 @Controller
@@ -17,13 +21,24 @@ import es.muralla.ad.multimedia.services.IPeliculasService;
 public class PeliculasController {
 	
 	private IPeliculasService peliculasService;
+	private ICategoriasService categoriasService;
 	
-	public PeliculasController(IPeliculasService peliculasService) {
+	public PeliculasController(IPeliculasService peliculasService, ICategoriasService categoriasService) {
 		this.peliculasService = peliculasService;
+		this.categoriasService = categoriasService;
 	}
 	
+	/*ANTES:@GetMapping("/crear")
+	public String verFormCrearPelicula(Pelicula p) {
+		return "form-pelicula";
+	}*/
+	
+	//DESPUES:
 	@GetMapping("/crear")
-	public String verFormCrearPelicula(@ModelAttribute Pelicula p) {
+	public String verFormCrearPelicula(Model model) {
+		model.addAttribute("pelicula", new Pelicula());
+		List<Categoria> categorias = categoriasService.getAll();
+		model.addAttribute("categorias",categorias);
 		return "form-pelicula";
 	}
 	
@@ -52,14 +67,13 @@ public class PeliculasController {
 		return "/peliculas/editar";
 	}
 	
-	
-	
-	
-	@GetMapping("/categorias")
-    String categorias() {
-        return "categorias";
-    }
-	
-	
+	@GetMapping("/categoria/{id}")
+	public String getPeliculasByCategoria(Model model, @PathVariable int id) {
+		List<Pelicula> peliculaByCategoryId = peliculasService.getPeliculaByCategoryId(id);
+		Pelicula categoriaDePelicula = peliculaByCategoryId.getFirst();
+		model.addAttribute("peliculas", peliculaByCategoryId);
+		model.addAttribute("categoriaDePelicula", categoriaDePelicula);
+		return "pelicula-categoria";
+	}
 
 }

@@ -33,7 +33,14 @@
 	<body>
 		<div id="content">
 			<div class="container">
-				<h1 class="mt-5 display-6" style="color: #8C1127;">Listado de peliculas</h1>
+				<div class="row mt-5 justify-content-between align-items-center">
+					<div class="col-2">
+						<h1 class="display-6" style="color: #8C1127;">Listado de peliculas</h1>
+					</div>
+					<div class="col-2">
+						<a href="/peliculas/crear"><button class="btn" type="button" value="" style="background: #8C1127; color: white;">Añadir</button></a>
+					</div>
+				</div>
 				
 					<table class="table mt-5" >
 						<thead>
@@ -41,6 +48,7 @@
 								<th scope="col" style="color: #8C1127;">Título</th>
 								<th scope="col" style="color: #8C1127;">Estreno</th>
 								<th scope="col" style="color: #8C1127;">Duración</th>
+								<th scope="col" style="color: #8C1127;">Categoría</th>
 								<th scope="col" style="color: #8C1127;">Acción</th>
 							</tr>
 						</thead>
@@ -49,6 +57,7 @@
 								<td th:text="${pelicula.titulo}"></td>
 								<td th:text="${pelicula.estreno}"></td>
 								<td th:text="${pelicula.duracion}"></td>
+								<td th:text="${pelicula.categoria.nombre}"></td>
 								<td>
 									<div class="row">
 										<div class="col">
@@ -82,10 +91,9 @@
 				<div class="row justify-content-end align-items-center">
 					<div class="col-1">
 						<p style="color: #8C1127;"><b>Recuento:</b></p>
-						<p th:text="${peliculas.size()}"></p>
 					</div>
 					<div class="col-1">
-						<a href="/peliculas/crear"><button class="btn" type="button" value="" style="background: #8C1127; color: white;">Añadir</button></a>
+						<p th:text="${peliculas.size()}"></p>
 					</div>
 				</div>
 			</div>

@@ -16,7 +16,6 @@ DROP TABLE IF EXISTS usuario;
 DROP TABLE IF EXISTS pelicula;
 DROP TABLE IF EXISTS categoria;
 
-
 -- Creación de tablas:
 CREATE TABLE usuario (
 	id int NOT NULL auto_increment,
@@ -38,15 +37,15 @@ CREATE TABLE categoria (
 );
 
 CREATE TABLE pelicula ( 
-	id int auto_increment,
+	id int NOT NULL auto_increment,
     titulo varchar(255) NOT NULL,
     estreno date NOT NULL,
     duracion int NOT NULL,
     
-    #id_categoria int NOT NULL,
+    id_categoria int NOT NULL,
     
-    primary key (id)
-    #foreign key (id_categoria) REFERENCES categoria(id)
+    primary key (id),
+    foreign key (id_categoria) REFERENCES categoria(id)
 );
 
 CREATE TABLE puntuacion (
@@ -68,11 +67,21 @@ VALUES
 	("La pepita trambolica", "matrix10", "antonia@gmail.com", "Antonia", "Winesmith", '1968-12-17'),
     ("Humberto el valiente", "contrasena", "alexanderG@bellsouth.ue", "Alex", "White", '1999-03-08'),
     ("Baba Yaga", "yaga*10", "babayaga@yahoo.com", "Baba", "Yaga", '2005-10-31');
+
+INSERT INTO categoria
+	(nombre)
+VALUES 
+	("Acción"),
+    ("Fantasía"),
+    ("Ciencia Ficción");
     
 INSERT INTO pelicula
-	(titulo, estreno, duracion)
+	(titulo, estreno, duracion, id_categoria)
 VALUES 
-	("Los juegos del hambre: En llamas", '2014-12-17', "145"),
-    ("Los juegos del hambre: Mockingjay Parte I", '2015-12-17', "145"),
-    ("Los juegos del hambre: Mockingjay Parte II", '2016-12-17', "145");
+	("Los juegos del hambre: En llamas", '2014-12-17', "145",1),
+    ("Harry Poter y la pieda filosofal", '2015-12-17', "145",2),
+    ("2001: Una odisea en el espacio", '2016-12-17', "145",3),
+    ("Senderos de gloria", '2000-01-20', "145",1);
+    
+
 

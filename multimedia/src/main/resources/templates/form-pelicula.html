@@ -147,6 +147,17 @@ box-shadow:  10px 10px 50px #6d6d6d6e,
 					</div>
 				  </div>
 				  
+				  <div class="row mx-3">
+					<div class="col">
+					  <div class="form-floating mb-3 d-flex flex-wrap">
+						<select class="form-select" id="categorias">
+					  		<option th:each="categoria : ${categorias}" th:value="${categoria.nombre}" th:text="${categoria.nombre}"></option>
+				  		</select>
+				  		<label for="floatingDuracionInput">Categoría</label>
+					  </div>
+					</div>
+				  </div>
+				  
 				  <!-- Form Footer -->
 				<footer>
 				  <div class="pt-3 pb-5 container text-center">
@@ -158,7 +169,7 @@ box-shadow:  10px 10px 50px #6d6d6d6e,
 					</div>
 				  </div>
 				</footer>
-				</form>
+			</form>
 			  </div>
 		</div>
 	</div>

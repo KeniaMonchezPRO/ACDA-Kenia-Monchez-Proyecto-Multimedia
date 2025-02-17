@@ -20,5 +20,7 @@ public interface IPeliculasService {
 	List<Pelicula> getAll();
 	
 	Optional<Pelicula> getById(int id);
+	
+	List<Pelicula> getPeliculaByCategoryId(int id);
 
 }

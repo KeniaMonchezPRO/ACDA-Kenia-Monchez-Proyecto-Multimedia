@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="es"
-      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org"
       th:replace="~{layout :: layout(~{::title/text()}, ~{::#content})}">
       
 	<head>
@@ -17,6 +17,12 @@
 	.container {
 		height: 100vh;
 	}
+	.card {
+		width: 15rem;
+		border-radius: 20px;
+     	border: 1px solid #7e0f23;
+      	box-shadow: 22px 22px 44px #9d9d9d, -22px -22px 44px #ffffff6a;
+	}
 	</style>
 	
 	<body>
@@ -24,8 +30,19 @@
 		    <div class="mt-5">
 		    	<h1 class="display-6" style="color: #8C1127;">Categorías</h1>
 		    </div>
-		    <!-- <a href="/">Home Page</a>
-		    <a href="/about">About Page</a> -->
+			<div class="row mt-5">
+				<div class="col-xl-3" th:each="categoria : ${categorias}">
+					<div class="card">
+						<div class="card-body">
+							<p class="card-title" th:text = "${categoria.nombre}"></p>
+							<hr>
+							<form th:action="@{/peliculas/categoria/{id}(id=${categoria.id})}" th:method="get">
+								<button class="btn" type="submit" value="" style="background: #8C1127; color: white;">Ver Películas</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</body>
 </html>

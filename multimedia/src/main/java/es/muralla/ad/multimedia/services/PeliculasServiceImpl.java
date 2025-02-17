@@ -42,4 +42,9 @@ public class PeliculasServiceImpl implements IPeliculasService {
 		return peliculasRepository.findById(id);
 	}
 
+	@Override
+	public List<Pelicula> getPeliculaByCategoryId(int id) {
+		return peliculasRepository.getPeliculaByCategoryId(id);
+	}
+
 }
