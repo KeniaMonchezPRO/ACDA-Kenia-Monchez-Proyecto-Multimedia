@@ -28,6 +28,20 @@ public class PeliculasController {
 		this.categoriasService = categoriasService;
 	}
 	
+	/************** PARA PRUEBAS *****************/
+	
+	@GetMapping("/prueba")
+	public String prueba() {
+		return "page-template";
+	}
+	
+	@GetMapping("/prueba2")
+	public String prueba2( ) {
+		return"/fragments/card-layout";
+	}
+	
+	/*********************************************/
+	
 	/*ANTES:@GetMapping("/crear")
 	public String verFormCrearPelicula(Pelicula p) {
 		return "form-pelicula";
