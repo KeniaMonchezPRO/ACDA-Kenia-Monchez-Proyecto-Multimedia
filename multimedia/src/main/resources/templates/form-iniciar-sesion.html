@@ -3,7 +3,8 @@
 	  xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="https://www.thymeleaf.org"
       th:replace="~{layout :: layout(title=~{::title/text()},
-                    content=~{::#content})}">
+                    background=~{::#background},
+                    card=~{::#card})}">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -49,7 +50,9 @@
   </style>
 
   <body>
-	  <div id="content">
+	  <div id="background">
+	  </div>
+	  <div id="card">
 	  	<h1 class="display-6 pt-5 text-center" style="color: #8c1127">Iniciar Sesión</h1>
 	    <form action="#" method="post" th:action="@{/usuarios/iniciar}" th:object="${username}">
 <!-- 	    Campos del formulario -->
