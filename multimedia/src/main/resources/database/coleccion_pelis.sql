@@ -15,6 +15,7 @@ DROP TABLE IF EXISTS puntuacion;
 DROP TABLE IF EXISTS usuario;
 DROP TABLE IF EXISTS pelicula;
 DROP TABLE IF EXISTS categoria;
+DROP TABLE IF EXISTS actor;
 
 -- Creación de tablas:
 CREATE TABLE usuario (
@@ -43,9 +44,24 @@ CREATE TABLE pelicula (
     duracion int NOT NULL,
     
     id_categoria int NOT NULL,
+    id_actor int NOT NULL,
     
     primary key (id),
-    foreign key (id_categoria) REFERENCES categoria(id)
+    foreign key (id_categoria) REFERENCES categoria(id),
+    foreign key (id_actor) REFERENCES actor(id)
+);
+
+CREATE TABLE actor (
+	id int NOT NULL auto_increment,
+    nombre varchar(255) NOT NULL,
+    apellidos varchar(255) NOT NULL,
+    fecha_nac date NOT NULL,
+    nacionalidad varchar(255),
+    
+    id_pelicula int NOT NULL,
+    
+    primary key (id),
+    foreign key (id_pelicula) REFERENCES pelicula(id)
 );
 
 CREATE TABLE puntuacion (
@@ -82,6 +98,7 @@ VALUES
     ("Harry Poter y la pieda filosofal", '2015-12-17', "145",2),
     ("2001: Una odisea en el espacio", '2016-12-17', "145",3),
     ("Senderos de gloria", '2000-01-20', "145",1);
+
     
 
 

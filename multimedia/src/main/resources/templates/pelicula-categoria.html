@@ -1,6 +1,9 @@
 <!DOCTYPE HTML>
-<html lang="es" xmlns:th="https://www.thymeleaf.org" th:replace="~{layout :: layout(~{::title/text()}, ~{::#content})}">
-
+<html lang="es" 
+	  xmlns:th="https://www.thymeleaf.org" 
+	  th:replace="~{layout :: layout(title=~{::title/text()},
+                    background=~{::#background},
+                    card=~{::#card})}">
 	<head>
 		<title>Categoría</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -31,7 +34,8 @@
 	<div th:insert="fragments/navigation.html">navbar</div>
 	<nav th:replace="~{/fragments/navigation.html :: nav}"></nav> -->
 	<body>
-		<div id="content">
+		<div id="background"></div>
+		<div id="card">
 			<div class="container">
 				<h1 class="mt-5 display-6" style="color: #8C1127;" th:text="${categoriaDePelicula.categoria.nombre}"/>
 				

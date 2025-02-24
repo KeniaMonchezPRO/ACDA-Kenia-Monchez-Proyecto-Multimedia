@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="es"
       xmlns:th="https://www.thymeleaf.org"
-      th:replace="~{layout :: layout(~{::title/text()}, ~{::#content})}">
+      th:replace="~{layout :: layout(title=~{::title/text()},
+                    background=~{::#background},
+                    card=~{::#card})}">
       
 	<head>
 		<title>Categorías</title>
@@ -26,7 +28,8 @@
 	</style>
 	
 	<body>
-		<div id="content">
+		<div id="background"></div>
+		<div id="card">
 		    <div class="mt-5">
 		    	<h1 class="display-6" style="color: #8C1127;">Categorías</h1>
 		    </div>

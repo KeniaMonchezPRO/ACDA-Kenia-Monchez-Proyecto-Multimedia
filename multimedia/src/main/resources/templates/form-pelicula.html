@@ -151,9 +151,12 @@ box-shadow:  10px 10px 50px #6d6d6d6e,
 					<div class="col">
 					  <div class="form-floating mb-3 d-flex flex-wrap">
 						<select class="form-select" id="categorias">
-					  		<option th:each="categoria : ${categorias}" th:value="${categoria.nombre}" th:text="${categoria.nombre}"></option>
+					  		<option 
+					  			th:each="categoria : ${categorias}" 
+					  			th:value="${categoria.nombre}" 
+					  			th:text="${categoria.nombre}"/>
 				  		</select>
-				  		<label for="floatingDuracionInput">Categoría</label>
+				  		<label for="floatingDuracionInput">Categorías</label>
 					  </div>
 					</div>
 				  </div>
