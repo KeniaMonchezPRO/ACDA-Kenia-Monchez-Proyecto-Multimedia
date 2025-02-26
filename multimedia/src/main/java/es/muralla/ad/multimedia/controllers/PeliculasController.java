@@ -60,6 +60,8 @@ public class PeliculasController {
 	@PostMapping("/crear")
 	public String crear(Pelicula p) {
 		//aqui va en el body la pelicula 
+		System.out.println(p.getId());
+		System.out.println(p.getTitulo());
 		System.out.println(p.getEstreno());
 		peliculasService.crear(p);
 		return "redirect:/peliculas/getall"; //cada vez que recargas con f5 te hago un get a esto
@@ -85,14 +87,14 @@ public class PeliculasController {
 		} else {
 			System.out.println("Fecha de estreno: " + p.get().getEstreno());
 			
-			// Formatea la fecha en el formato 'yyyy-MM-dd' (por ejemplo, '2014-12-17')
-	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-	        String fechaFormateada = p.get().getEstreno().format(formatter);
+//			// Formatea la fecha en el formato 'yyyy-MM-dd' (por ejemplo, '2014-12-17')
+//	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//	        String fechaFormateada = p.get().getEstreno().format(formatter);
 			model.addAttribute("pelicula", p.get());
-			model.addAttribute("fechaEstreno", p.get().getEstreno());
+//			model.addAttribute("fechaEstreno", p.get().getEstreno());
 			model.addAttribute("categorias", categoriasService.getAll());
 			
-			System.out.println("Fecha en el modelo: " + model.getAttribute("fechaEstreno"));
+//			System.out.println("Fecha en el modelo: " + model.getAttribute("fechaEstreno"));
 			return "form-pelicula";
 		}
 	}
@@ -106,9 +108,14 @@ public class PeliculasController {
 	@GetMapping("/categoria/{id}")
 	public String getPeliculasByCategoria(Model model, @PathVariable int id) {
 		List<Pelicula> peliculaByCategoryId = peliculasService.getPeliculaByCategoryId(id);
-		Pelicula categoriaDePelicula = peliculaByCategoryId.getFirst();
-		model.addAttribute("peliculas", peliculaByCategoryId);
-		model.addAttribute("categoriaDePelicula", categoriaDePelicula);
+		if(peliculaByCategoryId != null) {
+			Pelicula categoriaDePelicula = peliculaByCategoryId.getFirst();
+			model.addAttribute("peliculas", peliculaByCategoryId);
+			model.addAttribute("categoriaDePelicula", categoriaDePelicula);
+		} else {
+			model.addAttribute("peliculas", peliculaByCategoryId);
+		}
+		
 		return "pelicula-categoria";
 	}
 

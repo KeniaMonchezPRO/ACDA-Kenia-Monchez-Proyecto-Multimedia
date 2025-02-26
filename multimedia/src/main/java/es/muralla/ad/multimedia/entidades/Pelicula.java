@@ -19,7 +19,7 @@ public class Pelicula {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String titulo;
-	private LocalDate estreno;
+	private int estreno;
 	private int duracion;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -38,7 +38,7 @@ public class Pelicula {
 		
 	}
 
-	public Pelicula(int id, String titulo, LocalDate estreno, int duracion) {
+	public Pelicula(int id, String titulo, int estreno, int duracion) {
 		this.id = id;
 		this.titulo = titulo;
 		this.estreno = estreno;
@@ -61,11 +61,11 @@ public class Pelicula {
 		this.titulo = titulo;
 	}
 
-	public LocalDate getEstreno() {
+	public int getEstreno() {
 		return estreno;
 	}
 
-	public void setEstreno(LocalDate estreno) {
+	public void setEstreno(int estreno) {
 		this.estreno = estreno;
 	}
 
@@ -81,7 +81,7 @@ public class Pelicula {
 	public String toString() {
 		String builder = String.format("=== Pelicula: %d ==="
 				+ "\nTítulo: %d"
-				+ "\nEstreno: %s"
+				+ "\nEstreno: %d"
 				+ "\nDuración: %d", id, titulo, estreno, duracion);
 		return builder;
 	}

@@ -48,31 +48,13 @@
 				<div class="col">
 					<div class="form-floating mb-3">
 						<input
-						type="date"
-						th:if="${pelicula.id} != null"
-						th:value="${fechaEstreno}"
-						class="form-control"
-						id="floatingEstrenoInput"
-						placeholder="31/12/2000"
-						required
-						/>
-						<input
-						type="date"
-						th:unless="${pelicula.id} != null"
+						type="text"
 						th:field="*{estreno}"
 						class="form-control"
 						id="floatingEstrenoInput"
 						placeholder="31/12/2000"
 						required
 						/>
-<!-- 						<input -->
-<!-- 						type="date" -->
-<!-- 						th:field="*{estreno}" -->
-<!-- 						class="form-control" -->
-<!-- 						id="floatingEstrenoInput" -->
-<!-- 						placeholder="31/12/2000" -->
-<!-- 						required -->
-<!-- 						/> -->
 						<label for="floatingEstrenoInput">Estreno</label>
 					</div>
 				</div>

@@ -11,11 +11,13 @@ use coleccion_pelis;
 set default_storage_engine = InnoDB;
 
 -- Drops:
-DROP TABLE IF EXISTS puntuacion;
+#DROP TABLE IF EXISTS puntuacion;
 DROP TABLE IF EXISTS usuario;
+SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS pelicula;
 DROP TABLE IF EXISTS categoria;
-DROP TABLE IF EXISTS actor;
+SET FOREIGN_KEY_CHECKS = 0;
+#DROP TABLE IF EXISTS actor;
 
 -- Creación de tablas:
 CREATE TABLE usuario (
@@ -40,18 +42,18 @@ CREATE TABLE categoria (
 CREATE TABLE pelicula ( 
 	id int NOT NULL auto_increment,
     titulo varchar(255) NOT NULL,
-    estreno date NOT NULL,
+    estreno int NOT NULL,
     duracion int NOT NULL,
     
     id_categoria int NOT NULL,
-    id_actor int NOT NULL,
+    #id_actor int NOT NULL,
     
     primary key (id),
-    foreign key (id_categoria) REFERENCES categoria(id),
-    foreign key (id_actor) REFERENCES actor(id)
+    foreign key (id_categoria) REFERENCES categoria(id)
+    #foreign key (id_actor) REFERENCES actor(id)
 );
 
-CREATE TABLE actor (
+/*CREATE TABLE actor (
 	id int NOT NULL auto_increment,
     nombre varchar(255) NOT NULL,
     apellidos varchar(255) NOT NULL,
@@ -74,7 +76,7 @@ CREATE TABLE puntuacion (
     primary key (id),
     foreign key (id_usuario) REFERENCES usuario(id),
     foreign key (id_pelicula) REFERENCES pelicula(id)
-);
+);*/
 
 -- Inserciones para tabla usuarios:
 INSERT INTO usuario
@@ -89,15 +91,30 @@ INSERT INTO categoria
 VALUES 
 	("Acción"),
     ("Fantasía"),
-    ("Ciencia Ficción");
+    ("Ciencia Ficción"),
+    ('Aventura'),
+	('Comedia'),
+    ('Drama'),
+    ('Fantasía'),
+    ('Terror'),
+    ('Suspenso'),
+    ('Animación'),
+    ('Documental');
     
 INSERT INTO pelicula
 	(titulo, estreno, duracion, id_categoria)
 VALUES 
-	("Los juegos del hambre: En llamas", '2014-12-17', "145",1),
-    ("Harry Poter y la pieda filosofal", '2015-12-17', "145",2),
-    ("2001: Una odisea en el espacio", '2016-12-17', "145",3),
-    ("Senderos de gloria", '2000-01-20', "145",1);
+	("Los juegos del hambre: En llamas", '2014', "145",1),
+    ("Harry Poter y la pieda filosofal", '2015', "145",2),
+    ("2001: Una odisea en el espacio", '2016', "145",3),
+    ("Senderos de gloria", '2000', "145",1),
+    ('The Matrix', 1999, 136, 3),
+    ('Inception', 2010, 148, 3),
+    ('The Dark Knight', 2008, 152, 1),
+    ('Toy Story', 1995, 81, 10),
+    ('Interstellar', 2014, 169, 3),
+    ('Jurassic Park', 1993, 127, 9),
+    ('The Godfather', 1972, 175, 1);
 
     
 
