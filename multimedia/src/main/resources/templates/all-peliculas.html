@@ -4,7 +4,9 @@
       xmlns:th="https://www.thymeleaf.org"
       th:replace="~{layout :: layout(title=~{::title/text()},
                     background=~{::#background},
-                    card=~{::#card})}">
+                    card=~{::#card},
+                    normalNav=false,
+                    extraNav=true)}">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -16,22 +18,6 @@
 		<title>Listado de peliculas</title>
 	</head>
 	
-	<style>
-		.container {
-			height: 100vh;
-		}
-		
-		.btn {
-			background-color: #7e0f23;
-			border: 0px;
-		}
-	
-		.btn:hover {
-			color: #8C1127;
-	    	background-color: white;
-	    	border: 2px solid #7e0f23;
-		}
-	</style>
 	<!--<div th:insert="~{fragments/navigation :: nav}"></div>
 	<div th:insert="fragments/navigation.html">navbar</div>
 	<nav th:replace="~{/fragments/navigation.html :: nav}"></nav> -->
@@ -68,7 +54,7 @@
 								<td>
 									<div class="row">
 										<div class="col">
-											<form th:action="@{/peliculas/editar}" th:method="put" th:object="${pelicula}">
+											<form th:action="@{/peliculas/editar/{id}(id=${pelicula.id})}" th:object="${pelicula}">
 												<button class="btn" type="submit" value="" style="background: #8C1127; color: white;">Editar</button>
 											</form>
 										</div>

@@ -1,6 +1,8 @@
 package es.muralla.ad.multimedia.controllers;
 
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import es.muralla.ad.multimedia.entidades.Categoria;
@@ -56,8 +57,8 @@ public class PeliculasController {
 		return "form-pelicula";
 	}
 	
-	@PostMapping("/crear")
-	public String crear(Pelicula p) {
+	@PostMapping("/editar/{id}")
+	public String crear(@PathVariable int id, @ModelAttribute Pelicula p) {
 		//aqui va en el body la pelicula 
 		peliculasService.crear(p);
 		return "redirect:/peliculas/getall"; //cada vez que recargas con f5 te hago un get a esto
@@ -75,10 +76,21 @@ public class PeliculasController {
 		return "redirect:/peliculas/getall";
 	}
 	
-	@PutMapping("/editar/{id}")
+	@GetMapping("/editar/{id}")
 	public String editar(Model model, @PathVariable int id) {
-		model.addAttribute(peliculasService.getById(id));
-		return "/peliculas/editar";
+		Optional<Pelicula> p = peliculasService.getById(id);
+		if(!p.isPresent()) {
+			return "redirect:/peliculas/getall";
+		} else {
+			//System.out.println("Fecha de estreno: " + p.get().getEstreno());
+			// Formatea la fecha en el formato 'yyyy-MM-dd' (por ejemplo, '2014-12-17')
+	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+	        String fechaFormateada = p.get().getEstreno().format(formatter);
+			model.addAttribute("pelicula", p.get());
+			model.addAttribute("fechaEstreno", fechaFormateada);
+			model.addAttribute("categorias", categoriasService.getAll());
+			return "form-pelicula";
+		}
 	}
 	
 	@GetMapping("/categoria/{id}")
