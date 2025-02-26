@@ -23,9 +23,9 @@
   	<div id="background"></div>
 	<div id="card">
 		<h1 class="display-6 pt-5 ps-4" style="color: #8C1127;">Añadir película</h1>
-<!-- 				<form action="#" method="post" th:action="@{/peliculas/crear}" th:object="${pelicula}">  -->
-		<form th:action="@{${pelicula.id} != null ? '/peliculas/editar/' + ${pelicula.id} : '/peliculas/crear'}" method="post" th:object="${pelicula}">
-			<input type="hidden" th:field="*{id}" />
+     		<form action="#" method="post" th:action="@{/peliculas/crear}" th:object="${pelicula}">
+<!-- 		<form th:action="@{${pelicula.id} != null ? '/peliculas/editar/' + ${pelicula.id} : '/peliculas/crear'}" method="post" th:object="${pelicula}"> -->
+<!-- 			<input type="hidden" th:field="*{id}" /> -->
 			  
 			<!--Campos del formulario-->
 			<div class="row mt-5 mx-3">
@@ -49,12 +49,30 @@
 					<div class="form-floating mb-3">
 						<input
 						type="date"
+						th:if="${pelicula.id} != null"
 						th:value="${fechaEstreno}"
 						class="form-control"
 						id="floatingEstrenoInput"
 						placeholder="31/12/2000"
 						required
 						/>
+						<input
+						type="date"
+						th:unless="${pelicula.id} != null"
+						th:field="*{estreno}"
+						class="form-control"
+						id="floatingEstrenoInput"
+						placeholder="31/12/2000"
+						required
+						/>
+<!-- 						<input -->
+<!-- 						type="date" -->
+<!-- 						th:field="*{estreno}" -->
+<!-- 						class="form-control" -->
+<!-- 						id="floatingEstrenoInput" -->
+<!-- 						placeholder="31/12/2000" -->
+<!-- 						required -->
+<!-- 						/> -->
 						<label for="floatingEstrenoInput">Estreno</label>
 					</div>
 				</div>

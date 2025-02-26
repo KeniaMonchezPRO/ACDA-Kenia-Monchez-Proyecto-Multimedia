@@ -26,16 +26,18 @@
 		<div id="card">
 <!-- 			<header th:insert="fragments/card-layout :: header"></header> -->
 			<div class="container">
-				<div class="row mt-5 justify-content-between align-items-center">
-					<div class="col-2">
-						<h1 class="display-6" style="color: #8C1127;">Listado de peliculas</h1>
-					</div>
-					<div class="col-2">
-						<a href="/peliculas/crear"><button class="btn" type="button" value="" style="background: #8C1127; color: white;">Añadir</button></a>
-					</div>
-				</div>
-				
-					<table class="table mt-5" >
+<!-- 				<div class="row mt-5 justify-content-between align-items-center"> -->
+<!-- 					<div class="col-2"> -->
+<!-- 						<h1 class="display-6" style="color: #8C1127;">Listado de peliculas</h1> -->
+<!-- 					</div> -->
+<!-- 					<div class="col-2"> -->
+<!-- 						<a href="/peliculas/crear"><button class="btn" type="button" value="" style="background: #8C1127; color: white;">Añadir</button></a> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+
+					<div th:insert="~{fragments/card-header :: cardHeader(titleText='Listado de películas', path='/peliculas/crear')}"></div>
+					
+					<table class="table mt-5">
 						<thead>
 							<tr>
 								<th scope="col" style="color: #8C1127;">Título</th>
