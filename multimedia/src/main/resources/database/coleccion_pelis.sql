@@ -16,6 +16,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS usuario;
 DROP TABLE IF EXISTS pelicula;
 DROP TABLE IF EXISTS categoria;
+DROP TABLE IF EXISTS usuario_pelicula;
 #DROP TABLE IF EXISTS actor;
 SET FOREIGN_KEY_CHECKS = 1;
 
@@ -53,6 +54,15 @@ CREATE TABLE pelicula (
     #foreign key (id_actor) REFERENCES actor(id)
 );
 
+-- Tabla intermedia para la relación Many-to-Many:
+CREATE TABLE usuario_pelicula (
+    id_usuario INT NOT NULL,
+    id_pelicula INT NOT NULL,
+    primary key (id_usuario, id_pelicula),
+    foreign key (id_usuario) REFERENCES usuario(id),
+    foreign key (id_pelicula) REFERENCES pelicula(id)
+);
+
 /*CREATE TABLE actor (
 	id int NOT NULL auto_increment,
     nombre varchar(255) NOT NULL,
@@ -82,8 +92,8 @@ CREATE TABLE puntuacion (
 INSERT INTO usuario
 	(usuario, contrasena, email, nombre, apellidos, fecha_nac)
 VALUES 
-	("La pepita trambolica", "matrix10", "antonia@gmail.com", "Antonia", "Winesmith", '1968-12-17'),
-    ("Humberto el valiente", "contrasena", "alexanderG@bellsouth.ue", "Alex", "White", '1999-03-08'),
+	("La pepita", "matrix10", "antonia@gmail.com", "Antonia", "Winesmith", '1968-12-17'),
+    ("Humberto", "contrasena", "alexanderG@bellsouth.ue", "Alex", "White", '1999-03-08'),
     ("Baba Yaga", "yaga*10", "babayaga@yahoo.com", "Baba", "Yaga", '2005-10-31');
 
 INSERT INTO categoria
@@ -115,6 +125,16 @@ VALUES
     ('Interstellar', 2014, 169, 3),
     ('Jurassic Park', 1993, 127, 9),
     ('The Godfather', 1972, 175, 1);
+    
+INSERT INTO usuario_pelicula
+	(id_usuario, id_pelicula)
+VALUES 
+	(1,1),
+    (1,2),
+    (1,3),
+    (2,4),
+    (2,6);
+    
 
     
 

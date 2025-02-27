@@ -10,9 +10,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import es.muralla.ad.multimedia.dao.UsuariosDao;
 import es.muralla.ad.multimedia.entidades.Categoria;
 import es.muralla.ad.multimedia.entidades.Pelicula;
+import es.muralla.ad.multimedia.entidades.Usuario;
 import es.muralla.ad.multimedia.services.ICategoriasService;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/categorias")
@@ -25,7 +28,11 @@ public class CategoriasController {
 	}
 	
 	@GetMapping("/getall")
-	public String verCategorias(Model model) {
+	public String verCategorias(Model model, HttpSession session) {
+		Usuario usuario = (Usuario) session.getAttribute("usuario"); 
+		if (usuario == null) {
+			return "redirect:/usuarios/iniciar";
+		}
 		model.addAttribute("categorias", categoriasService.getAll());
 		return "categorias";
 	}
@@ -37,7 +44,11 @@ public class CategoriasController {
 	}
 	
 	@GetMapping("/crear")
-	public String verFormCrearPelicula(Model model) {
+	public String verFormCrearPelicula(Model model, HttpSession session) {
+		Usuario usuario = (Usuario) session.getAttribute("usuario"); 
+		if (usuario == null) {
+			return "redirect:/usuarios/iniciar";
+		}
 		model.addAttribute("categoria", new Categoria());
 		return "form-categoria";
 	}

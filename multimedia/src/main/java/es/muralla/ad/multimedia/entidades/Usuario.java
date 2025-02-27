@@ -1,12 +1,18 @@
 package es.muralla.ad.multimedia.entidades;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -37,6 +43,22 @@ public class Usuario {
 	@Column(name = "fecha_nac")
 	private LocalDate fechaNac;
 	
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(
+	    name = "usuario_pelicula",
+	    joinColumns = @JoinColumn(name = "id_usuario"),
+	    inverseJoinColumns = @JoinColumn(name = "id_pelicula")
+	)
+	private List<Pelicula> peliculas;
+	
+	public List<Pelicula> getPeliculas() {
+		return peliculas;
+	}
+
+	public void setPeliculas(List<Pelicula> peliculas) {
+		this.peliculas = peliculas;
+	}
+
 	public Usuario() {
 		
 	}

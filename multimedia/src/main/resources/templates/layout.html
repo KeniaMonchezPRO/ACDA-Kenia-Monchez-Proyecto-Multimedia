@@ -32,10 +32,10 @@
 	
 	<body class="bg-secondary-subtle text-secondary-emphasis">
 	
-		<!-- Este fragmento se muestra solo cuando showExtraContent está presente -->
+		<!-- Este fragmento se muestra solo cuando extraNav está presente -->
 	    <div th:if="${extraNav}">
 	      <div class="extra-content">
-	        <nav class="navbar navbar-expand-lg">
+	        <nav class="navbar fixed-top navbar-expand-lg">
 			    <div class="container-fluid">
 			      <a class="navbar-brand display-6 ms-3" href="#" style="color: white;">ColeccionPelis.com</a>
 			      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,19 +49,11 @@
 				        <li class="nav-item">
 				          <a class="nav-link" href="/categorias/getall" style="color: white;">Categorías</a>
 				        </li>
-				        <li class="nav-item">
-				          <a class="nav-link" href="#" style="color: white;">Actores</a>
-				        </li>
-				        <li class="nav-item dropdown">
-				          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white;">Ajustes</a>
-				          <ul class="dropdown-menu">
-				            <li><a class="dropdown-item" href="#">Action</a></li>
-				            <li><a class="dropdown-item" href="#">Another action</a></li>
-				            <li><a class="dropdown-item" href="#">Something else here</a></li>
-				          </ul>
-				        </li>
 				      </ul>
 				    </div>
+				  <div class="me-5">
+				  	<a class="nav-link active" href="/usuarios/logout" style="color: white;">Cerrar sesión</a>
+				  </div>
 			      <svg
 			        xmlns="http://www.w3.org/2000/svg"
 			        width="20"
@@ -80,7 +72,7 @@
 	    </div>
 	    
 	    <div th:if="${normalNav}">
-	    	<nav class="navbar navbar-expand-lg">
+	    	<nav class="navbar fixed-top navbar-expand-lg">
 			    <div class="container-fluid">
 			      <a class="navbar-brand display-6 ms-3" href="#" style="color: white;">ColeccionPelis.com</a>
 			      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -103,12 +95,21 @@
 	    </div>
 	    
 		 	
-	    <div id="app" class="container-fluid d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+	    <div id="app" class="container-fluid d-flex flex-column justify-content-center align-items-center" style="min-height: 100vh;">
 	    	<div th:block th:replace="${background}"></div>
+	    	<div>
+	    		<div></div>
+	    	</div>
+	    	
 	    	<div id="card-content" class="bg-subtle-light d-flex justify-content-center align-items-center w-100">
+	    		
 		    	<div class="container-sm bg-light pb-5 ps-5">
 		    		<div th:block th:replace="${card}"></div>
 		    	</div>
+	    	</div>
+	    	
+	    	<div>
+	    		<br>
 	    	</div>
 	    </div>
 	</body>

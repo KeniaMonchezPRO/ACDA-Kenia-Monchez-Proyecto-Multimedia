@@ -39,12 +39,16 @@
 		                    />
 		                    <label for="floatingNombreUsuarioInput">Usuario</label>
 	                  	</div>
+	                  	<!-- Mensaje de error para el campo username -->
+              		    <div th:if="${error != null and error.contains('Usuario')}" class="text-danger" style="font-size: 0.875rem;">
+                			<p>El usuario no se encuentra en nuestra base de datos.</p>
+              			</div>
 	                </div>
 	             </div>
 	
 	             <div class="row mx-3 mb-5">
 	                <div class="col">
-	                	<div class="form-floating">
+	                	<div class="form-floating mb-3">
 		                    <input
 		                      type="password"
 		                      th:field="*{contrasena}"
@@ -55,9 +59,14 @@
 		                    />
 		                    <label for="floatingPasswordInput">Contraseña</label>
 	                  	</div>
+	                  	<!-- Mensaje de error para el campo contraseña -->
+              			<div th:if="${error != null and error.contains('Contraseña')}" class="text-danger" style="font-size: 0.875rem;">
+                			<p>La contraseña es incorrecta.</p>
+              			</div>
 	                </div>
 	             </div>
 	        </div>
+		    
 			<!-- Form Footer -->
 	        <footer>
 	        	<div class="container pt-3 pb-5 text-start">

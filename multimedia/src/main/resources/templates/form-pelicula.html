@@ -20,13 +20,13 @@
   </head>
 
   <body>
-  	<div id="background"></div>
+  	<div id="background">	</div>
 	<div id="card">
 		<h1 class="display-6 pt-5 ps-4" style="color: #8C1127;">Añadir película</h1>
      		<form action="#" method="post" th:action="@{/peliculas/crear}" th:object="${pelicula}">
 <!-- 		<form th:action="@{${pelicula.id} != null ? '/peliculas/editar/' + ${pelicula.id} : '/peliculas/crear'}" method="post" th:object="${pelicula}"> -->
 <!-- 			<input type="hidden" th:field="*{id}" /> -->
-			  
+						
 			<!--Campos del formulario-->
 			<div class="row mt-5 mx-3">
 				<div class="col">
@@ -52,7 +52,7 @@
 						th:field="*{estreno}"
 						class="form-control"
 						id="floatingEstrenoInput"
-						placeholder="31/12/2000"
+						placeholder="2011"
 						required
 						/>
 						<label for="floatingEstrenoInput">Estreno</label>
@@ -68,7 +68,6 @@
 						th:field="*{duracion}"
 						class="form-control"
 						id="floatingDuracionInput"
-						placeholder="90"
 						required
 						/>
 						<label for="floatingDuracionInput">Duración</label>
@@ -89,16 +88,18 @@
 					</div>
 				</div>
 			</div>
-				  
-				  <!-- Form Footer -->
-			<footer>
-				<div class="pt-3 pb-5 container text-center">
-					<div class="col">
-						<button class="btn btn-primary py-2 px-3" type="submit" value="" style="background-color: #7e0f23; border: 0px;">Añadir</button>
-					</div>
+
+			<div class="pt-4 pb-3 container text-center">
+				<div class="col">
+					<button class="btn btn-primary py-2 px-3" type="submit" value="" style="background-color: #7e0f23; border: 0px;">Añadir</button>
 				</div>
+			</div>
+
+			<footer>
+				
 			</footer>
 		</form>
 	</div>
+	
   </body>
 </html>

@@ -11,18 +11,24 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import es.muralla.ad.multimedia.dao.PeliculasRepository;
 import es.muralla.ad.multimedia.dao.UsuariosDao;
+import es.muralla.ad.multimedia.entidades.Pelicula;
 import es.muralla.ad.multimedia.entidades.Usuario;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/usuarios")
 public class UsuariosController {
 	
 	private UsuariosDao usuariosDao;
+	private final PeliculasRepository peliculasRepository;
 	
-	public UsuariosController(UsuariosDao usuariosDao) {
+	public UsuariosController(UsuariosDao usuariosDao, PeliculasRepository peliculasRepository) {
 		this.usuariosDao = usuariosDao;
+		this.peliculasRepository = peliculasRepository;
 	}
 	
 	/**************************Para @Controller**********************************************/
@@ -40,11 +46,34 @@ public class UsuariosController {
 //		return "form-registro";
 //	}
 	
+//	ANTES DE @PostMapping("/crear")
+//	@PostMapping("/crear")
+//	public String registrarUsuario(@ModelAttribute("usuario") Usuario u) {
+//		usuariosDao.add(u);
+//		return "redirect:/usuarios/iniciar";
+//	}
+	
 	@PostMapping("/crear")
-	public String registrarUsuario(@ModelAttribute("usuario") Usuario u) {
-		usuariosDao.add(u);
-		return "redirect:/usuarios/iniciar";
-	}
+    public String addPelicula(@RequestParam int idPelicula, HttpSession session) {
+        // Obtener el usuario desde la sesión
+        Usuario usuario = (Usuario) session.getAttribute("usuario");
+        
+        if (usuario != null) {
+            // Buscar la película por ID
+            Optional<Pelicula> pelicula = peliculasRepository.findById(idPelicula);
+            
+            if (pelicula.isPresent()) {
+                // Llamar al método addPeliculaToUsuario en UsuarioDao
+                usuariosDao.addPeliculaToUsuario(usuario.getId(), pelicula.get().getId());
+            }
+
+            // Redirigir al usuario a la página de películas (se recargan sus películas)
+            return "redirect:/peliculas/getall";
+        }
+
+        // Si el usuario no está logueado, redirigir a la página de login
+        return "redirect:/usuarios/iniciar";
+    }
 	
 	/* forma de spring: 
 	@PostMapping("/crear")
@@ -61,20 +90,46 @@ public class UsuariosController {
 	}
 	
 	@PostMapping("/iniciar")
-	public String iniciarPerfilUsuario(@ModelAttribute("username") Usuario u) {
+	public String iniciarPerfilUsuario(@ModelAttribute("username") Usuario u, Model model, HttpSession session) {
 		//TODO: QUE VERIFICA TAMBIEN QUE LA CONTRASENA COINCIDA CON EL USUARIO
 		//usuario encontrado = usuarioservice.buscarporemail(u.getemail())
 		//if(u.getcontrasena.equals(encontrado.getcontrasena(()){ bien coincide la contra } else { //return "redirect:/usuarios/iniciar?error=!" en thymeleaf: <p th:text=${param.error}></p> }
-		Optional<Usuario> encontrado = usuariosDao.getUserByUsername(u);
-		if(encontrado.isPresent()) {
+		//Optional<Usuario> encontrado = usuariosDao.getUserByUsername(u);
+		Optional<Usuario> encontrado = usuariosDao.getUserByUsername(u.getUsername());
+		/*if(encontrado.isPresent()) {
 			if(u.getUsername().equals(encontrado.get().getUsername())) {
 				return "redirect:/peliculas/crear";
 			}
 		} else {
 			return "redirect:/usuarios/iniciar";
 		}
-		return "";
+		return "";*/
+		if (encontrado.isPresent()) {
+	        // Verificar que la contraseña es correcta (comparar contraseñas)
+			if (u.getContrasena().equals(encontrado.get().getContrasena())) {
+				// Guardamos el usuario en la sesión
+	            session.setAttribute("usuario", encontrado.get());
+	            // Si la contraseña es correcta, redirigir al usuario a la página de películas
+	            return "redirect:/peliculas/getall"; 
+	        } else {
+	            // Si la contraseña es incorrecta, que lo regrese al form
+	        	model.addAttribute("error","Contraseña incorrecta");
+	            return "form-iniciar-sesion"; 
+	        }
+	    } else {
+	        // Si no se encuentra el usuario, que lo regrese al form
+	    	model.addAttribute("error","Usuario no encontrado");
+	        return "form-iniciar-sesion";
+	    }
 	}
+	
+	@GetMapping("/logout")
+	public String cerrarSesion(HttpSession session) {
+	    session.invalidate(); // Invalida la sesión actual
+	    return "redirect:/usuarios/iniciar"; // Redirige a la página de login
+	}
+	
+	
 	
 	
 	
