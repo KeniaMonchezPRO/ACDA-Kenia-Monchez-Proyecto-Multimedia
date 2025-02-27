@@ -12,12 +12,10 @@ set default_storage_engine = InnoDB;
 
 -- Drops:
 SET FOREIGN_KEY_CHECKS = 0;
-#DROP TABLE IF EXISTS puntuacion;
 DROP TABLE IF EXISTS usuario;
 DROP TABLE IF EXISTS pelicula;
 DROP TABLE IF EXISTS categoria;
 DROP TABLE IF EXISTS usuario_pelicula;
-#DROP TABLE IF EXISTS actor;
 SET FOREIGN_KEY_CHECKS = 1;
 
 -- Creación de tablas:
@@ -62,31 +60,6 @@ CREATE TABLE usuario_pelicula (
     foreign key (id_usuario) REFERENCES usuario(id),
     foreign key (id_pelicula) REFERENCES pelicula(id)
 );
-
-/*CREATE TABLE actor (
-	id int NOT NULL auto_increment,
-    nombre varchar(255) NOT NULL,
-    apellidos varchar(255) NOT NULL,
-    fecha_nac date NOT NULL,
-    nacionalidad varchar(255),
-    
-    id_pelicula int NOT NULL,
-    
-    primary key (id),
-    foreign key (id_pelicula) REFERENCES pelicula(id)
-);
-
-CREATE TABLE puntuacion (
-	id int NOT NULL auto_increment,
-    puntuacion int NOT NULL,
-    
-    id_usuario int NOT NULL,
-    id_pelicula int NOT NULL,
-    
-    primary key (id),
-    foreign key (id_usuario) REFERENCES usuario(id),
-    foreign key (id_pelicula) REFERENCES pelicula(id)
-);*/
 
 -- Inserciones para tabla usuarios:
 INSERT INTO usuario

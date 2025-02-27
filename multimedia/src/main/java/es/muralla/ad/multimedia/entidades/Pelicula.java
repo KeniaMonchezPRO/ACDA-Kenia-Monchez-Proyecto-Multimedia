@@ -1,6 +1,5 @@
 package es.muralla.ad.multimedia.entidades;
 
-import java.time.LocalDate;
 import java.util.Set;
 
 import jakarta.persistence.Entity;
@@ -95,7 +94,8 @@ public class Pelicula {
 		String builder = String.format("=== Pelicula: %d ==="
 				+ "\nTítulo: %d"
 				+ "\nEstreno: %d"
-				+ "\nDuración: %d", id, titulo, estreno, duracion);
+				+ "\nDuración: %d"
+				+ "\nCategoría: %d", id, titulo, estreno, duracion, categoria.getNombre());
 		return builder;
 	}
 

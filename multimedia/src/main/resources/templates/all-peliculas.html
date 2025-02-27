@@ -17,10 +17,6 @@
 			crossorigin="anonymous">
 		<title>Listado de peliculas</title>
 	</head>
-	
-	<!--<div th:insert="~{fragments/navigation :: nav}"></div>
-	<div th:insert="fragments/navigation.html">navbar</div>
-	<nav th:replace="~{/fragments/navigation.html :: nav}"></nav> -->
 	<body>
 		<div id="background">
 			<div>
@@ -32,86 +28,55 @@
 		</div>
 		
 		<div id="card">
-<!-- 			<header th:insert="fragments/card-layout :: header"></header> -->
-			
-<!-- 			<div class="container"> -->
-				
-<!-- 				<div class="row mt-5 justify-content-between align-items-center"> -->
-<!-- 					<div class="col-2"> -->
-<!-- 						<h1 class="display-6" style="color: #8C1127;">Listado de peliculas</h1> -->
-<!-- 					</div> -->
-<!-- 					<div class="col-2"> -->
-<!-- 						<form th:action="@{/peliculas/crear}" method="post"> -->
-<!--                             <input type="hidden" th:value="${pelicula.id}" name="peliculaId"/> -->
-<!--                             <button type="submit" class="btn btn-primary">Agregar a mi perfil</button> -->
-<!--                         </form> -->
-<!-- 						<a href="/peliculas/crear"><button class="btn" type="button" value="" style="background: #8C1127; color: white;">Añadir</button></a> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-
-					<div th:insert="~{/fragments/card-header :: cardHeader(titleText='Listado de películas', path='/peliculas/crear')}"></div>
-					
-					<!-- Verificar si no hay películas -->
-<!-- 			        <div th:if="${peliculas == null or #lists.isEmpty(peliculas)}"> -->
-					<div th:if="${peliculas.isEmpty()}">
-			            <div class="row mt-5">
-							<p>Aún no hay películas añadidas.</p>
-						</div>
-			        </div>
-			        
-			        <!-- Mostrar lista de películas si no está vacía -->
-<!-- 			        <div th:unless="${peliculas == null or #lists.isEmpty(peliculas)}"> -->
-					<div th:if="${not peliculas.isEmpty()}">
-			        	<table class="table mt-5">
-							<thead>
-								<tr>
-									<th scope="col" style="color: #8C1127;">Título</th>
-									<th scope="col" style="color: #8C1127;">Estreno</th>
-									<th scope="col" style="color: #8C1127;">Duración</th>
-									<th scope="col" style="color: #8C1127;">Categoría</th>
-									<th scope="col" style="color: #8C1127;">Acción</th>
-								</tr>
-							</thead>
-							<tbody class="table-group-divider" style="color: #8C1127;">
-								<tr th:each="pelicula : ${peliculas}">
-									<td th:text="${pelicula.titulo}"></td>
-									<td th:text="${pelicula.estreno}"></td>
-									<td th:text="${pelicula.duracion}"></td>
-									<td th:text="${pelicula.categoria.nombre}"></td>
-									<td>
-										<div class="row">
-											<div class="col">
-												<form th:action="@{/peliculas/editar/{id}(id=${pelicula.id})}" th:object="${pelicula}">
-													<button class="btn" type="submit" value="" style="background: #8C1127; color: white;">Editar</button>
-												</form>
-											</div>
-											<div class="col">
-												<form th:action="@{/peliculas/eliminar/{id}(id=${pelicula.id})}" th:method="post">
-													<button class="btn" type="submit" value="" style="background: #8C1127; color: white;">Eliminar</button>
-												</form>
-											</div>
-										</div>
-										<!-- <form class="m-1" th:action="@{/peliculas/editar}" th:method="put" th:object="${pelicula}">
-											<button class="btn" type="submit" value="" style="background: #8C1127; color: white;">Editar</button>
-										</form>
-										<form class="m-1" th:action="@{/peliculas/eliminar/{id}(id=${pelicula.id})}" th:method="post">
-											<button class="btn" type="submit" value="" style="background: #8C1127; color: white;">Eliminar</button>
-										</form> -->							
-									</td>
-								</tr>
-							</tbody>
-						</table>
-			        </div>
-			        
-				<div class="row justify-content-end align-items-center">
-					<div class="col-1">
-						<p style="color: #8C1127;"><b>Recuento:</b></p>
-					</div>
-					<div class="col-1">
-						<p th:text="${peliculas.size()}"></p>
-					</div>
+			<div th:insert="~{/fragments/card-header :: cardHeader(titleText='Listado de películas', path='/peliculas/crear')}"></div>
+			<div th:if="${peliculas.isEmpty()}">
+				<div class="row mt-5">
+					<p>Aún no hay películas añadidas.</p>
 				</div>
 			</div>
+			<div th:if="${not peliculas.isEmpty()}">
+				<table class="table mt-5">
+					<thead>
+						<tr>
+							<th scope="col" style="color: #8C1127;">Título</th>
+							<th scope="col" style="color: #8C1127;">Estreno</th>
+							<th scope="col" style="color: #8C1127;">Duración</th>
+							<th scope="col" style="color: #8C1127;">Categoría</th>
+							<th scope="col" style="color: #8C1127;">Acción</th>
+						</tr>
+					</thead>
+					<tbody class="table-group-divider" style="color: #8C1127;">
+						<tr th:each="pelicula : ${peliculas}">
+							<td th:text="${pelicula.titulo}"></td>
+							<td th:text="${pelicula.estreno}"></td>
+							<td th:text="${pelicula.duracion}"></td>
+							<td th:text="${pelicula.categoria.nombre}"></td>
+							<td>
+								<div class="row">
+									<div class="col">
+										<form th:action="@{/peliculas/editar/{id}(id=${pelicula.id})}" th:object="${pelicula}">
+											<button class="btn" type="submit" value="" style="background: #8C1127; color: white;">Editar</button>
+										</form>
+									</div>
+									<div class="col">
+										<form th:action="@{/peliculas/eliminar/{id}(id=${pelicula.id})}" th:method="post">
+											<button class="btn" type="submit" value="" style="background: #8C1127; color: white;">Eliminar</button>
+										</form>
+									</div>
+								</div>							
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="row justify-content-end align-items-center">
+				<div class="col-1">
+					<p style="color: #8C1127;"><b>Recuento:</b></p>
+				</div>
+				<div class="col-1">
+					<p th:text="${peliculas.size()}"></p>
+				</div>
+			</div>		
 		</div>
 	</body>
 </html>

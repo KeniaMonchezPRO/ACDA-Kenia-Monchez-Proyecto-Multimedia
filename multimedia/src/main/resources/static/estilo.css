@@ -1,79 +1,10 @@
-.cards_container two {
-    height: 100vh;
-    justify-content: center;
-    align-content: center;
-    cursor: unset;
-    padding: 0;
+.container-sm {
+    border-radius: 20px;
+    border: 1px solid #7e0f23;
+    box-shadow: 22px 22px 44px #9d9d9d, -22px -22px 44px #ffffff6a;
 }
 
-form {
-    margin: 3.5%;
-    width: inherit;
-    padding: 2%;
-    background: grey;
-    border-radius: .5rem;
-    box-shadow: 7px 7px 20px #2d383a8a, -2px -2px 20px #ffffff6a;
-    font-size: 14px;
-    animation-name: primeiro;
-    animation-duration: 1s;
-}
-
-form h1 {
-    text-align: center;
-    padding-top: 0;
-    padding-bottom: 1rem;
-    font-size: 2em;
-}
-
-form p {
-    margin-bottom: 0;
-    padding: 10px;
-    text-align: left;
-}
-
-.button-two {
-    text-align: center;
-}
-
-input[type=text],[type=password],[type="email"],[type="date"] {
-    margin-top: 10px;
-    width: 100%;
-    padding: inherit;
-    border: none;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.479);
-    box-sizing: border-box;
-    background-color: transparent;
-    color: rgb(255, 255, 255);
-    transition: 0.4s;
-    font-family: inherit;
-    outline: none;
-}
-
-::placeholder[type=button] {
-    width: 60%;
-    margin-top: 15px;
-    padding: 20px;
-    border-style: none;
-    border-radius: .5rem;
-    font-size: inherit;
-    color: white;
-    font-size: 1rem;
-    font-weight: bold;
-    background: linear-gradient(145dep,#d9e5e7a6,#d5dedf80);
-    box-shadow: 7px 7px 15px #4c6364, -2px -2px 17px #4c6364;
-}
-
-input[type=button]:hover {
-    transform: scale(1.1,1.1);
-    transition: 0.4s;
-}
-
-footer p {
-    font-size: 15px;
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-footer a {
-    color: white;
+nav {
+    background: linear-gradient(145deg, #7e0f23, #7e0f23);
+    box-shadow: 10px 10px 50px #6d6d6d6e, -10px -10px 50px #5d5d5dc0;
 }

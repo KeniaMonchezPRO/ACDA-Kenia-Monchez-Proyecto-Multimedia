@@ -9,29 +9,9 @@
 	      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
 	      crossorigin="anonymous"
 	    />
+	    <link rel="stylesheet" href="/estilo.css">
 	</head>
-	
-	<style>
-		.container-sm {
-      		border-radius: 20px;
-      		border: 1px solid #7e0f23;
-      		box-shadow: 22px 22px 44px #9d9d9d, -22px -22px 44px #ffffff6a;
-		}
-    	
-	    nav {
-			background: linear-gradient(145deg, #7e0f23, #7e0f23);
-			box-shadow:  10px 10px 50px #6d6d6d6e, -10px -10px 50px #5d5d5dc0;
-		}
-	</style>
-	
-	<!-- <nav class="navbar bg-primary sticky-top" data-bs-theme="dark"> -->
-	<!--     <div class="container-fluid"> -->
-	<!--         <a class="navbar-brand" href="#">Sticky top</a> -->
-	<!--       </div> -->
-	<!-- </nav> -->
-	
 	<body class="bg-secondary-subtle text-secondary-emphasis">
-	
 		<!-- Este fragmento se muestra solo cuando extraNav está presente -->
 	    <div th:if="${extraNav}">
 	      <div class="extra-content">
@@ -93,21 +73,17 @@
 			    </div>
 		 	</nav>
 	    </div>
-	    
 		 	
 	    <div id="app" class="container-fluid d-flex flex-column justify-content-center align-items-center" style="min-height: 100vh;">
 	    	<div th:block th:replace="${background}"></div>
 	    	<div>
 	    		<div></div>
 	    	</div>
-	    	
 	    	<div id="card-content" class="bg-subtle-light d-flex justify-content-center align-items-center w-100">
-	    		
 		    	<div class="container-sm bg-light pb-5 ps-5">
 		    		<div th:block th:replace="${card}"></div>
 		    	</div>
 	    	</div>
-	    	
 	    	<div>
 	    		<br>
 	    	</div>

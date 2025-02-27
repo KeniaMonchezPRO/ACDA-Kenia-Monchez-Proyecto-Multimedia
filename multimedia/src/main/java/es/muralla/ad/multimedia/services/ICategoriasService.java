@@ -2,10 +2,8 @@ package es.muralla.ad.multimedia.services;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import es.muralla.ad.multimedia.entidades.Categoria;
-import es.muralla.ad.multimedia.entidades.Pelicula;
 
 public interface ICategoriasService {
 	

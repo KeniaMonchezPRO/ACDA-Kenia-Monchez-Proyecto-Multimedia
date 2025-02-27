@@ -14,11 +14,7 @@
 			rel="stylesheet"
 			integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
 			crossorigin="anonymous">
-	</head>
-	<!--<div th:insert="~{fragments/navigation :: nav}"></div>
-	<div th:insert="fragments/navigation.html">navbar</div>
-	<nav th:replace="~{/fragments/navigation.html :: nav}"></nav> -->
-					
+	</head>		
 	<body>
 		<div id="background"></div>
 		<div id="card">
@@ -29,24 +25,20 @@
 					</svg>
 				</a>
 				<div class="ms-4">
-<!-- 					<h1 class="display-6" style="color: #8C1127;" th:text="${categoriaDePelicula.categoria.nombre}"></h1> -->
 					<h1 th:text="${categoria.nombre}"></h1>
 				</div>
 			</div>
-			
 			<!-- Verifica si la lista de películas está vacía o es null -->
 			<div th:if="${peliculas == null or #lists.isEmpty(peliculas)}">
 				<div class="row mt-5">
 					<p>No hay películas bajo esta categoría.</p>
 				</div>
 				<div class="row mt-5">
-<!-- 					<a th:href="@{/peliculas/crear(categoriaId=${categoria.id})}"> -->
 					<a th:href="@{/peliculas/crear}">
 						<button class="btn" style="background: #8C1127; color: white;">Añadir Película</button>
 					</a>
 				</div>
 			</div>
-				
 			<!-- Si hay películas, muestra el listado -->
 			<div th:unless="${peliculas == null or #lists.isEmpty(peliculas)}">
 				<div>

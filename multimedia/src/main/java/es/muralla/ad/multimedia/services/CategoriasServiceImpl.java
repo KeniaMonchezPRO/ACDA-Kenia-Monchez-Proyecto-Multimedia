@@ -2,13 +2,11 @@ package es.muralla.ad.multimedia.services;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import org.springframework.stereotype.Service;
 
 import es.muralla.ad.multimedia.dao.CategoriasRepository;
 import es.muralla.ad.multimedia.entidades.Categoria;
-import es.muralla.ad.multimedia.entidades.Pelicula;
 
 @Service
 public class CategoriasServiceImpl implements ICategoriasService {

@@ -18,30 +18,15 @@
     />
     <title>Registrarse | ColeccionPelis.com</title>
   </head>
-
-  <style>
-	.btn {
-		background-color: #7e0f23;
-		border: 0px;
-	}
-
-	.btn:hover {
-		color: #8C1127 !important;
-    	background-color: white !important;
-    	border: 2px solid #7e0f23 !important;
-	}
-
-  </style>
-
   <body>
   	<div id="background"></div>
-	  <div id="card">
+	<div id="card">
 	  	<h1 class="display-6 pt-5 ps-4" style="color: #8C1127;">Registrarse</h1>
-			<form action="#" method="post" th:action="@{/usuarios/crear}" th:object="${usuario}">
-				<!--Campos del formulario-->
-				<div class="row mt-5 mx-3">
-					<div class="col">
-					  <div class="form-floating mb-3 ">
+		<form action="#" method="post" th:action="@{/usuarios/crear}" th:object="${usuario}">
+			<!--Campos del formulario-->
+			<div class="row mt-5 mx-3">
+				<div class="col">
+					<div class="form-floating mb-3 ">
 						<input
 						  type="text"
 						  th:field="*{nombre}"
@@ -51,10 +36,10 @@
 						  required
 						/>
 						<label for="floatingNombreInput">Nombre</label>
-					  </div>
 					</div>
-					<div class="col">
-					  <div class="form-floating">
+				</div>
+				<div class="col">
+					<div class="form-floating">
 						<input
 						  type="text"
 						  th:field="*{apellidos}"
@@ -64,83 +49,80 @@
 						  required
 						/>
 						<label for="floatingApellidosInput">Apellidos</label>
-					  </div>
 					</div>
 				</div>
-		  
-				<div class="row mx-3">
-					<div class="col">
-						<div class="form-floating mb-3">
-							<input
-							type="email"
-							th:field="*{email}"
-							class="form-control"
-							id="floatingEmailInput"
-							placeholder="nombre@example.com"
-							required
-							/>
-							<label class="" for="floatingEmailInput">Email</label>
-						</div>
+			</div>
+			<div class="row mx-3">
+				<div class="col">
+					<div class="form-floating mb-3">
+						<input
+						  type="email"
+						  th:field="*{email}"
+						  class="form-control"
+						  id="floatingEmailInput"
+						  placeholder="nombre@example.com"
+						  required
+						/>
+						<label class="" for="floatingEmailInput">Email</label>
 					</div>
-					<div class="col">
-						<div class="form-floating mb-3">
-							<input
-							type="date"
-							th:field="*{fechaNac}"
-							class="form-control"
-							id="floatingFechNacInput"
-							placeholder="31/12/2000"
-							required
-							/>
-							<label class="" for="floatingFechaNacInput">Fecha de Nacimiento</label>
+				</div>
+				<div class="col">
+					<div class="form-floating mb-3">
+						<input
+						  type="date"
+						  th:field="*{fechaNac}"
+						  class="form-control"
+						  id="floatingFechNacInput"
+						  placeholder="31/12/2000"
+						  required
+						/>
+						<label class="" for="floatingFechaNacInput">Fecha de Nacimiento</label>
+					</div>
+				</div>
+			</div>
+			<div class="row mx-3">
+				<div class="col">
+					<div class="form-floating mb-3 d-flex flex-wrap">
+						<input
+						  type="text"
+						  th:field="*{username}"
+						  class="form-control"
+						  id="floatingNombreUsuarioInput"
+						  placeholder="John"
+						  required
+						/>
+						<label for="floatingNombreInput">Usuario</label>
+					</div>
+				</div>
+				<div class="col">
+					<div class="form-floating">
+						<input
+					  	  type="password"
+						  th:field="*{contrasena}"
+						  class="form-control"
+						  id="floatingPasswordInput"
+						  placeholder="password"
+						  required
+						/>
+						<label for="floatingPasswordInput">Contraseña</label>
+					</div>
+				</div>
+			</div>
+			<!-- Form Footer -->
+			<footer>
+				<div class="pt-3 pb-5 container text-center">
+					<div class="row justify-content-between align-items-center">
+						<div class="col-4">
+							<p>¿Ya tienes cuenta?</p>
+							<a href="/usuarios/iniciar" style="color: #7e0f23;">Iniciar Sesión</a>
+						</div>
+						<div class="col-4">
+							<button class="btn btn-primary py-2 px-3" type="submit" value="" style="background-color: #7e0f23; border: 0px;">Registrarse</button>
 						</div>
 					</div>
 				</div>
-		  
-				<div class="row mx-3">
-					<div class="col">
-						<div class="form-floating mb-3 d-flex flex-wrap">
-							<input
-							type="text"
-							th:field="*{username}"
-							class="form-control"
-							id="floatingNombreUsuarioInput"
-							placeholder="John"
-							required
-							/>
-							<label for="floatingNombreInput">Usuario</label>
-					  	</div>
-					</div>
-					<div class="col">
-						<div class="form-floating">
-							<input
-							type="password"
-							th:field="*{contrasena}"
-							class="form-control"
-							id="floatingPasswordInput"
-							placeholder="password"
-							required
-							/>
-							<label for="floatingPasswordInput">Contraseña</label>
-					  	</div>
-					</div>
-				</div>
-				  
-				  <!-- Form Footer -->
-				<footer>
-					<div class="pt-3 pb-5 container text-center">
-						<div class="row justify-content-between align-items-center">
-							<div class="col-4">
-								<p>¿Ya tienes cuenta?</p>
-								<a href="/usuarios/iniciar" style="color: #7e0f23;">Iniciar Sesión</a>
-						  	</div>
-						  	<div class="col-4">
-								<button class="btn btn-primary py-2 px-3" type="submit" value="" style="background-color: #7e0f23; border: 0px;">Registrarse</button>
-						  	</div>
-						</div>
-				  	</div>
-				</footer>
-			</form>
-	  </div>		
+			</footer>
+		</form>
+	</div>		
   </body>
 </html>

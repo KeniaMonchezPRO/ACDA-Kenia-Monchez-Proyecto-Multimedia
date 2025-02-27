@@ -44,7 +44,6 @@ public class UsuariosMySqlDaoImpl implements UsuariosDao {
 	@Override
 	@Transactional
 	public Usuario deleteById(int id) {
-		//si hago el metodo de https://www.bezkoder.com/jpa-entitymanager-spring-boot/ no funciona, me da el error org.hibernate.UnknownEntityTypeException: Unable to locate persister: java.util.Optional (sen resolver)
 		Usuario u = entityManager.find(Usuario.class, id);
 		if(u != null) {
 			entityManager.remove(u);
@@ -61,11 +60,9 @@ public class UsuariosMySqlDaoImpl implements UsuariosDao {
 
 	@Override
 	public Optional<Usuario> getUserByUsername(String username) {
-		// esto no funciona porque el find es solo find primary key Usuario user = entityManager.find(Usuario.class, u.getUsername());
 		TypedQuery<Usuario> query = entityManager.createQuery("from Usuario where username = :username", Usuario.class);
 		query.setParameter("username", username);
 		Optional<Usuario> x = query.getResultList().stream().findFirst();
-		//Optional<Usuario> x = Optional.ofNullable(query.getSingleResult());
 		return x;
 	}
 
@@ -76,20 +73,11 @@ public class UsuariosMySqlDaoImpl implements UsuariosDao {
 	    Pelicula pelicula = entityManager.find(Pelicula.class, idPelicula);
 	    
 	    if (usuario != null && pelicula != null) {
-	        // Verificar si el usuario ya tiene esa película
 	        if (!usuario.getPeliculas().contains(pelicula)) {
 	            usuario.getPeliculas().add(pelicula);
-	            entityManager.merge(usuario); // Guardar los cambios
+	            entityManager.merge(usuario);
 	        }
 	    }
-	    
-//		// Asegúrate de que la película no esté ya en la lista (opcional)
-//        if (!u.getPeliculas().contains(p)) {
-//            u.getPeliculas().add(p);
-//        }
-//
-//        // Guardar el usuario con la nueva película (esto actualizará la relación M:N)
-//        entityManager.merge(u); // Usamos merge para actualizar el usuario si ya existe
 	}
 
 }
