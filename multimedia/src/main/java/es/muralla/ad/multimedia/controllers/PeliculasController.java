@@ -60,9 +60,9 @@ public class PeliculasController {
 	@PostMapping("/crear")
 	public String crear(Pelicula p) {
 		//aqui va en el body la pelicula 
-		System.out.println(p.getId());
-		System.out.println(p.getTitulo());
-		System.out.println(p.getEstreno());
+//		System.out.println(p.getId());
+//		System.out.println(p.getTitulo());
+//		System.out.println(p.getEstreno());
 		peliculasService.crear(p);
 		return "redirect:/peliculas/getall"; //cada vez que recargas con f5 te hago un get a esto
 	}

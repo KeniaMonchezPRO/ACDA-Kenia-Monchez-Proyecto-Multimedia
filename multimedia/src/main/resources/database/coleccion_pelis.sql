@@ -11,13 +11,13 @@ use coleccion_pelis;
 set default_storage_engine = InnoDB;
 
 -- Drops:
+SET FOREIGN_KEY_CHECKS = 0;
 #DROP TABLE IF EXISTS puntuacion;
 DROP TABLE IF EXISTS usuario;
-SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS pelicula;
 DROP TABLE IF EXISTS categoria;
-SET FOREIGN_KEY_CHECKS = 0;
 #DROP TABLE IF EXISTS actor;
+SET FOREIGN_KEY_CHECKS = 1;
 
 -- Creación de tablas:
 CREATE TABLE usuario (
